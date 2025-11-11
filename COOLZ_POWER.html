@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חסכון בחשמל - Coolz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #00cc66;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 204, 102, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #00b359;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 204, 102, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 20px;
+        }
+
+        section h2 {
+            font-size: 2.2em;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        section > p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: #00cc66;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-icon {
+            font-size: 1.8em;
+        }
+
+        .waste-percentage {
+            color: #ff6b6b;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border-right: 4px solid #00cc66;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature h3 {
+            color: #1a1a1a;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+        }
+
+        /* Case Studies */
+        .case-studies {
+            background: white;
+        }
+
+        .case-study {
+            background: linear-gradient(to left, #f0f9ff 0%, white 100%);
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            border-right: 5px solid #00cc66;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .case-study h3 {
+            color: #00cc66;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .case-study-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .stat strong {
+            display: block;
+            color: #00cc66;
+            margin-bottom: 5px;
+        }
+
+        .savings-highlight {
+            background: #00cc66;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .testimonial {
+            font-style: italic;
+            color: #555;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-right: 3px solid #00cc66;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            color: white;
+        }
+
+        .calculator-section h2 {
+            color: white;
+        }
+
+        .calculator-section > p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .calculator {
+            background: white;
+            color: #333;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #00cc66;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00cc66;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            background: #00cc66;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .calculate-btn:hover {
+            background: #00b359;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, #00cc66 0%, #00994d 100%);
+            color: white;
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .result-item {
+            font-size: 1.3em;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+        }
+
+        .result-item strong {
+            display: block;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .result-item .number {
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        /* Environmental Section */
+        .environmental {
+            background: linear-gradient(to bottom, #e8f5e9 0%, white 100%);
+        }
+
+        .env-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .env-stat {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .env-stat .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .env-stat h3 {
+            color: #00cc66;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        /* Special Offer Section */
+        .special-offer {
+            background: linear-gradient(135deg, #00cc66 0%, #00994d 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .special-offer h2 {
+            color: white;
+        }
+
+        .offer-box {
+            background: white;
+            color: #333;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 30px auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .offer-box h3 {
+            color: #00cc66;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+
+        .offer-list {
+            text-align: right;
+            margin: 25px 0;
+        }
+
+        .offer-list li {
+            list-style: none;
+            padding: 12px 0;
+            font-size: 1.1em;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .offer-list li:last-child {
+            border-bottom: none;
+        }
+
+        .checkmark {
+            color: #00cc66;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: white;
+        }
+
+        .faq-item {
+            background: #f9f9f9;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border-right: 4px solid #00cc66;
+        }
+
+        .faq-item h3 {
+            color: #1a1a1a;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact > p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item .icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .contact-item h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .contact-form {
+            background: white;
+            color: #333;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #00cc66;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #00b359;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            section h2 {
+                font-size: 1.8em;
+            }
+
+            .cards-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator,
+            .offer-box,
+            .contact-form {
+                padding: 25px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>חסכון בחשמל חכם - הפחיתו עד 40% מעלויות הקירור</h1>
+            <p>מערכת Coolz מזהה בזבוז חשמל, מייעלת את צריכת האנרגיה ומונעת הוצאות מיותרות במערכות הקירור שלכם</p>
+            <a href="#calculator" class="cta-button">חשבו כמה תחסכו ⬅️</a>
+        </div>
+    </section>
+
+    <!-- Why Waste Section -->
+    <section>
+        <div class="container">
+            <h2>למה מערכות קירור בוזבזות חשמל?</h2>
+            <p>מערכות קירור אחראיות ל-50-70% מצריכת החשמל בעסקים מסחריים. בזבוז האנרגיה נובע מכמה סיבות שלרוב נשארות בלתי מזוהות:</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h3><span class="card-icon">⚙️</span> עבודת יתר של המדחס</h3>
+                    <p>המדחס עובד יותר מדי שעות ביום בגלל הגדרות לא נכונות, חיישנים לא מכוילים או דלתות שלא נסגרות היטב.</p>
+                    <p class="waste-percentage">📈 בזבוז: 15-25% מהחשמל</p>
+                </div>
+
+                <div class="card">
+                    <h3><span class="card-icon">❄️</span> הפשרות מיותרות</h3>
+                    <p>הפשרות אוטומטיות שמתבצעות לפי לוח זמנים קבוע ולא לפי צורך אמיתי גורמות לבזבוז אנרגיה.</p>
+                    <p class="waste-percentage">📈 בזבוז: 10-15% מהחשמל</p>
+                </div>
+
+                <div class="card">
+                    <h3><span class="card-icon">💡</span> צריכת יתר במצב המתנה</h3>
+                    <p>תאורה, מאווררים ומערכות עזר שממשיכות לפעול גם כשאין צורך בהם.</p>
+                    <p class="waste-percentage">📈 בזבוז: 5-10% מהחשמל</p>
+                </div>
+
+                <div class="card">
+                    <h3><span class="card-icon">🔧</span> תקלות לא מזוהות</h3>
+                    <p>דליפות גז, אטמים פגומים, או בעיות במערכת המאייד שגורמות למדחס לעבוד קשה יותר.</p>
+                    <p class="waste-percentage">📈 בזבוז: 20-30% מהחשמל</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Coolz Saves Section -->
+    <section style="background: white;">
+        <div class="container">
+            <h2>איך Coolz חוסכת לכם בחשמל?</h2>
+            <p>מערכת Coolz מנתחת את דפוסי הצריכה של מערכת הקירור שלכם 24/7, מזהה בזבוז ומייעלת את הפעילות באופן אוטומטי</p>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>⚡ ניטור צריכת חשמל בזמן אמת</h3>
+                    <p>המערכת מודדת את צריכת החשמל של מערכת הקירור בכל רגע נתון ומשווה אותה לערכי הייחוס של היצרן. כל חריגה מזוהה מיידית ונשלחת אליכם התראה.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>🎯 זיהוי אוטומטי של עבודת יתר</h3>
+                    <p>המחשב שלנו מזהה מתי המדחס עובד יותר מדי שעות ביום, מתי ההפשרות תכופות מדי, או מתי יש פעילות לא תקינה שגורמת לבזבוז אנרגיה.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>📅 ניהול חכם של לוח עבודה</h3>
+                    <p>אפשר לתכנת את מערכת הקירור לעבוד רק בשעות הנחוצות, לכבות אוטומטית בלילה או בסופי שבוע, ולהתאים את הפעילות לצרכים העסקיים שלכם.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>🔄 אופטימיזציה של הפשרות</h3>
+                    <p>במקום הפשרות קבועות לפי שעון, המערכת מבצעת הפשרה רק כשזה באמת נדרש - על סמך ניתוח הצטברות קרח ותנאי הסביבה.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>🌡️ ויסות טמפרטורה מדויק</h3>
+                    <p>המערכת שומרת על טמפרטורה יציבה ומדויקת, מונעת תנודות מיותרות שגורמות למדחס לעבוד קשה יותר וצורכות יותר חשמל.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>🚨 התראות מונעות על תקלות</h3>
+                    <p>זיהוי מוקדם של תקלות כמו דליפות גז, אטמים פגומים או בעיות במערכת - מונע צריכת חשמל מוגברת בטרם התקלה מחמירה.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="case-studies">
+        <div class="container">
+            <h2>כמה באמת חוסכים עם Coolz?</h2>
+            <p>לקוחות שלנו מדווחים על חיסכון ממוצע של 25-40% בהוצאות החשמל של מערכות הקירור</p>
+            
+            <div class="case-study">
+                <h3>📍 מכולת משפחתית - תל אביב</h3>
+                <div class="case-study-stats">
+                    <div class="stat">
+                        <strong>לפני Coolz:</strong>
+                        4,200 ₪ לחודש על חשמל קירור
+                    </div>
+                    <div class="stat">
+                        <strong>אחרי Coolz:</strong>
+                        2,800 ₪ לחודש
+                    </div>
+                    <div class="stat">
+                        <strong>החזר השקעה:</strong>
+                        5 חודשים
+                    </div>
+                </div>
+                <div class="savings-highlight">
+                    💰 חיסכון: 1,400 ₪ לחודש (33%)
+                </div>
+                <div class="testimonial">
+                    "זיהינו שהמקפיא עבד 18 שעות ביום במקום 12. עם Coolz שינינו את לוח העבודה וחסכנו מיד."
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h3>📍 מסעדה - ירושלים</h3>
+                <div class="case-study-stats">
+                    <div class="stat">
+                        <strong>לפני Coolz:</strong>
+                        7,800 ₪ לחודש על חשמל קירור
+                    </div>
+                    <div class="stat">
+                        <strong>אחרי Coolz:</strong>
+                        4,900 ₪ לחודש
+                    </div>
+                    <div class="stat">
+                        <strong>החזר השקעה:</strong>
+                        4 חודשים
+                    </div>
+                </div>
+                <div class="savings-highlight">
+                    💰 חיסכון: 2,900 ₪ לחודש (37%)
+                </div>
+                <div class="testimonial">
+                    "גילינו שיש דליפת גז קטנה שגרמה למדחס לעבוד פי 1.5. תיקנו ומיד ראינו את ההבדל."
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h3>📍 סופרמרקט קטן - חיפה</h3>
+                <div class="case-study-stats">
+                    <div class="stat">
+                        <strong>לפני Coolz:</strong>
+                        11,500 ₪ לחודש על חשמל קירור
+                    </div>
+                    <div class="stat">
+                        <strong>אחרי Coolz:</strong>
+                        7,200 ₪ לחודש
+                    </div>
+                    <div class="stat">
+                        <strong>החזר השקעה:</strong>
+                        3.5 חודשים
+                    </div>
+                </div>
+                <div class="savings-highlight">
+                    💰 חיסכון: 4,300 ₪ לחודש (37%)
+                </div>
+                <div class="testimonial">
+                    "המערכת זיהתה שההפשרות היו תכופות פי 2 מהנדרש. שינינו ומיד חסכנו אלפי שקלים."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="calculator">
+        <div class="container">
+            <h2>חשבו בעצמכם - כמה תחסכו?</h2>
+            <p>הכניסו את הנתונים שלכם וגלו את פוטנציאל החיסכון השנתי שלכם</p>
+            
+            <div class="calculator">
+                <form id="savingsForm">
+                    <div class="form-group">
+                        <label for="numUnits">כמה מקררים/מקפיאים יש לכם?</label>
+                        <input type="number" id="numUnits" min="1" max="50" value="2" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monthlyBill">מהו חשבון החשמל החודשי הממוצע שלכם? (₪)</label>
+                        <input type="number" id="monthlyBill" min="100" max="100000" value="5000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coolingPercent">כמה אחוז מהחשמל הולך על קירור?</label>
+                        <select id="coolingPercent" required>
+                            <option value="50">50% - מעט מקררים</option>
+                            <option value="60" selected>60% - כמות בינונית</option>
+                            <option value="70">70% - הרבה מקררים</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hoursPerDay">כמה שעות ביום מערכת הקירור פועלת?</label>
+                        <input type="number" id="hoursPerDay" min="1" max="24" value="24" required>
+                    </div>
+
+                    <button type="submit" class="calculate-btn">חשב חיסכון 🧮</button>
+                </form>
+
+                <div class="result" id="result">
+                    <h3>💰 החיסכון הפוטנציאלי שלכם:</h3>
+                    <div class="result-item">
+                        <strong>חיסכון חודשי משוער</strong>
+                        <div class="number" id="monthlySavings">0 ₪</div>
+                    </div>
+                    <div class="result-item">
+                        <strong>חיסכון שנתי משוער</strong>
+                        <div class="number" id="yearlySavings">0 ₪</div>
+                    </div>
+                    <div class="result-item">
+                        <strong>החזר השקעה צפוי</strong>
+                        <div class="number" id="roi">0 חודשים</div>
+                    </div>
+                    <a href="#contact" class="cta-button" style="margin-top: 20px;">רוצים להתחיל לחסוך? צרו קשר ⬅️</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environmental Section -->
+    <section class="environmental">
+        <div class="container">
+            <h2>חסכון בחשמל = חסכון בסביבה</h2>
+            <p>חיסכון באנרגיה הוא לא רק עניין כלכלי - זה גם תרומה משמעותית להפחתת פליטות פחמן והגנה על הסביבה</p>
+            
+            <div class="env-stats">
+                <div class="env-stat">
+                    <div class="icon">🌱</div>
+                    <h3>הפחתת פליטות CO2</h3>
+                    <p>חיסכון של 1,000 קוט"ש בשנה = הפחתה של 650 ק"ג פליטות CO2</p>
+                    <p><strong>(שווה ערך לנטיעת 30 עצים!)</strong></p>
+                </div>
+
+                <div class="env-stat">
+                    <div class="icon">⚡</div>
+                    <h3>חיסכון בייצור חשמל</h3>
+                    <p>כל מערכת Coolz חוסכת בממוצע 12,000 קוט"ש בשנה</p>
+                    <p><strong>(שווה ערך לצריכת חשמל של 1.5 משפחות!)</strong></p>
+                </div>
+
+                <div class="env-stat">
+                    <div class="icon">💧</div>
+                    <h3>חיסכון במים</h3>
+                    <p>פחות צריכת חשמל = פחות מים לייצור אנרגיה</p>
+                    <p><strong>הפחתה של כ-180 ליטר מים לחודש!</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer Section -->
+    <section class="special-offer">
+        <div class="container">
+            <h2>התחילו לחסוך עוד היום</h2>
+            <p>הצטרפו לאלפי עסקים שכבר חוסכים מדי חודש עם Coolz</p>
+            
+            <div class="offer-box">
+                <h3>🎁 מבצע השקה</h3>
+                <ul class="offer-list">
+                    <li><span class="checkmark">✅</span> ניתוח צריכת חשמל חינם</li>
+                    <li><span class="checkmark">✅</span> התקנה מקצועית כלולה</li>
+                    <li><span class="checkmark">✅</span> 30 יום ניסיון - אם לא חוסכים, מחזירים כסף!</li>
+                    <li><span class="checkmark">✅</span> תמיכה טכנית 24/7</li>
+                </ul>
+                <a href="tel:076-599770" class="cta-button">📞 התקשרו עכשיו: 076-599770</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2>שאלות שחשוב לכם לדעת</h2>
+            
+            <div class="faq-item">
+                <h3>❓ כמה זמן לוקח לראות חיסכון?</h3>
+                <p>רוב הלקוחות שלנו רואים הפחתה בצריכת החשמל כבר בחשבון הראשון - תוך 30 יום מההתקנה.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>❓ האם ההתקנה משפיעה על פעילות העסק?</h3>
+                <p>בכלל לא. ההתקנה לוקחת 1-2 שעות ומתבצעת ללא הפסקת פעילות מערכת הקירור.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>❓ מה קורה אם לא אחסוך בחשמל?</h3>
+                <p>אנחנו כל כך בטוחים במערכת שאנחנו מציעים 30 יום ניסיון - אם לא תראו חיסכון, נחזיר את הכסף.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>❓ האם המערכת מתאימה לכל סוגי המקררים?</h3>
+                <p>המערכת תומכת במגוון רחב של בקרי קירור. צרו קשר ונבדוק תאימות למערכת שלכם.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>❓ כמה עולה תחזוקה שוטפת?</h3>
+                <p>המערכת כמעט ולא דורשת תחזוקה. המנוי החודשי כולל עדכוני תוכנה, תמיכה טכנית ושירותי ענן.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>❓ איך אני יכול לעקוב אחרי החיסכון?</h3>
+                <p>באפליקציה יש דשבורד מפורט שמציג לכם את צריכת החשמל ההיסטורית, החיסכון החודשי והשנתי בגרפים ברורים.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>מוכנים להתחיל לחסוך?</h2>
+            <p>הצוות שלנו זמין לענות על כל שאלה ולתת ייעוץ מקצועי ללא התחייבות</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="icon">📞</div>
+                    <h3>טלפון</h3>
+                    <a href="tel:076-599770">076-599770</a>
+                </div>
+
+                <div class="contact-item">
+                    <div class="icon">📧</div>
+                    <h3>אימייל</h3>
+                    <a href="mailto:info@coolz.co.il">info@coolz.co.il</a>
+                </div>
+
+                <div class="contact-item">
+                    <div class="icon">📍</div>
+                    <h3>כתובת</h3>
+                    <p style="font-size: 1.2em; margin-top: 10px;">אלי כהן 24, אשקלון</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3 style="color: #00cc66; margin-bottom: 20px;">השאירו פרטים ונחזור אליכם תוך שעה</h3>
+                <form id="contactForm">
+                    <input type="text" placeholder="שם מלא *" required>
+                    <input type="tel" placeholder="טלפון *" required>
+                    <input type="email" placeholder="אימייל *" required>
+                    <input type="text" placeholder="סוג עסק">
+                    <textarea placeholder="הודעה (אופציונלי)"></textarea>
+                    <button type="submit" class="submit-btn">שלחו ונחזור אליכם ⬅️</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Calculator functionality
+        document.getElementById('savingsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const numUnits = parseInt(document.getElementById('numUnits').value);
+            const monthlyBill = parseInt(document.getElementById('monthlyBill').value);
+            const coolingPercent = parseInt(document.getElementById('coolingPercent').value);
+            const hoursPerDay = parseInt(document.getElementById('hoursPerDay').value);
+            
+            // Calculate cooling cost
+            const monthlyCoolingCost = monthlyBill * (coolingPercent / 100);
+            
+            // Average savings: 30% (can be adjusted based on usage patterns)
+            let savingsPercent = 30;
+            
+            // Adjust savings based on hours of operation
+            if (hoursPerDay === 24) {
+                savingsPercent = 35; // More savings potential for 24/7 operation
+            } else if (hoursPerDay < 12) {
+                savingsPercent = 25; // Less savings for limited operation
+            }
+            
+            // Calculate savings
+            const monthlySavings = Math.round(monthlyCoolingCost * (savingsPercent / 100));
+            const yearlySavings = monthlySavings * 12;
+            
+            // Calculate ROI (assuming average system cost of 5000 NIS)
+            const systemCost = 5000;
+            const roiMonths = Math.ceil(systemCost / monthlySavings);
+            
+            // Display results
+            document.getElementById('monthlySavings').textContent = monthlySavings.toLocaleString('he-IL') + ' ₪';
+            document.getElementById('yearlySavings').textContent = yearlySavings.toLocaleString('he-IL') + ' ₪';
+            document.getElementById('roi').textContent = roiMonths + ' חודשים';
+            
+            document.getElementById('result').classList.add('show');
+            
+            // Smooth scroll to results
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('תודה! נחזור אליכם בהקדם האפשרי.');
+            this.reset();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
