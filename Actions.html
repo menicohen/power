@@ -507,20 +507,82 @@
             margin: 0;
         }
 
+        /* Flip Card for Mobile */
+        .flip-container {
+            display: none;
+        }
+
         /* Mobile Responsive for Comparison */
         @media (max-width: 968px) {
             .before-after-wrapper {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+                display: none;
             }
 
-            .ba-arrow {
-                flex-direction: row;
-                padding: 0;
+            .flip-container {
+                display: block;
+                perspective: 1000px;
+                margin-bottom: 3rem;
             }
 
-            .arrow-circle span {
-                transform: rotate(90deg);
+            .flip-card {
+                position: relative;
+                width: 100%;
+                min-height: 600px;
+                transform-style: preserve-3d;
+                transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .flip-card.flipped {
+                transform: rotateY(180deg);
+            }
+
+            .flip-side {
+                position: absolute;
+                width: 100%;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+            }
+
+            .flip-front {
+                z-index: 2;
+            }
+
+            .flip-back {
+                transform: rotateY(180deg);
+            }
+
+            .flip-toggle {
+                position: fixed;
+                bottom: 2rem;
+                right: 50%;
+                transform: translateX(50%);
+                z-index: 100;
+                background: linear-gradient(135deg, var(--primary), var(--primary-light));
+                color: white;
+                border: none;
+                padding: 1rem 2rem;
+                border-radius: 50px;
+                font-size: 1.125rem;
+                font-weight: 700;
+                box-shadow: 0 10px 40px rgba(0, 204, 102, 0.4);
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .flip-toggle:active {
+                transform: translateX(50%) scale(0.95);
+            }
+
+            .flip-toggle-icon {
+                font-size: 1.5rem;
+                transition: transform 0.3s;
+            }
+
+            .flip-card.flipped .flip-toggle-icon {
+                transform: rotate(180deg);
             }
 
             .savings-highlight {
@@ -999,6 +1061,121 @@
                 </div>
             </div>
 
+            <!-- Flip Card for Mobile Only -->
+            <div class="flip-container fade-in">
+                <div class="flip-card" id="flipCard">
+                    <!-- Front Side - Without Coolz -->
+                    <div class="flip-side flip-front">
+                        <div class="ba-section without">
+                            <div class="ba-header">
+                                <span class="ba-icon">😰</span>
+                                <h3>ללא Coolz</h3>
+                                <p class="ba-subtitle">מערכת קירור רגילה</p>
+                            </div>
+                            <div class="ba-content">
+                                <div class="ba-card bad">
+                                    <span class="ba-icon-small">❌</span>
+                                    <div>
+                                        <strong>עובד 24/7 ללא שליטה</strong>
+                                        <p>המדחס עובד גם כשאף אחד לא בעסק</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card bad">
+                                    <span class="ba-icon-small">❌</span>
+                                    <div>
+                                        <strong>מגלים תקלות מאוחר מדי</strong>
+                                        <p>יודעים על בעיה רק כשהמוצרים התקלקלו</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card bad">
+                                    <span class="ba-icon-small">❌</span>
+                                    <div>
+                                        <strong>טכנאי לכל דבר קטן</strong>
+                                        <p>500-1,500 ₪ לכל ביקור מיותר</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card bad">
+                                    <span class="ba-icon-small">❌</span>
+                                    <div>
+                                        <strong>אין תיעוד טיפולים</strong>
+                                        <p>תשלומים כפולים באחריות</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card bad">
+                                    <span class="ba-icon-small">❌</span>
+                                    <div>
+                                        <strong>דאגה מתמדת</strong>
+                                        <p>אף פעם לא יודעים מה קורה שם</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ba-cost">
+                                <span class="cost-label">עלות שנתית:</span>
+                                <span class="cost-value bad">~50,000 ₪</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Back Side - With Coolz -->
+                    <div class="flip-side flip-back">
+                        <div class="ba-section with">
+                            <div class="ba-header">
+                                <span class="ba-icon">🚀</span>
+                                <h3>עם Coolz</h3>
+                                <p class="ba-subtitle">אותה מערכת + בקרה חכמה</p>
+                            </div>
+                            <div class="ba-content">
+                                <div class="ba-card good">
+                                    <span class="ba-icon-small">✅</span>
+                                    <div>
+                                        <strong>עובד רק כשצריך</strong>
+                                        <p>תזמון חכם חוסך 40% חשמל</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card good">
+                                    <span class="ba-icon-small">✅</span>
+                                    <div>
+                                        <strong>התראות מיידיות</strong>
+                                        <p>יודעים על בעיה לפני שהיא גורמת נזק</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card good">
+                                    <span class="ba-icon-small">✅</span>
+                                    <div>
+                                        <strong>שליטה מרחוק</strong>
+                                        <p>משנים הגדרות מהסמארטפון, ללא טכנאי</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card good">
+                                    <span class="ba-icon-small">✅</span>
+                                    <div>
+                                        <strong>ספר טיפולים דיגיטלי</strong>
+                                        <p>תיעוד אוטומטי של הכל + אחריות</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card good">
+                                    <span class="ba-icon-small">✅</span>
+                                    <div>
+                                        <strong>שקט נפשי מלא</strong>
+                                        <p>ניטור 24/7, אתם ישנים בשקט</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ba-cost">
+                                <span class="cost-label">עלות שנתית:</span>
+                                <span class="cost-value good">~25,000 ₪</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flip Toggle Button -->
+                <button class="flip-toggle" id="flipButton">
+                    <span class="flip-toggle-icon">🔄</span>
+                    <span id="flipButtonText">ראו עם Coolz</span>
+                </button>
+            </div>
+
             <!-- Savings Highlight -->
             <div class="savings-highlight fade-in">
                 <div class="savings-icon">💰</div>
@@ -1154,6 +1331,27 @@
     </section>
 
     <script>
+        // Flip Card Function (Mobile Only)
+        document.addEventListener('DOMContentLoaded', function() {
+            const flipButton = document.getElementById('flipButton');
+            if (flipButton) {
+                flipButton.addEventListener('click', function() {
+                    const card = document.getElementById('flipCard');
+                    const buttonText = document.getElementById('flipButtonText');
+                    
+                    if (card && buttonText) {
+                        card.classList.toggle('flipped');
+                        
+                        if (card.classList.contains('flipped')) {
+                            buttonText.textContent = 'חזרה ללא Coolz';
+                        } else {
+                            buttonText.textContent = 'ראו עם Coolz';
+                        }
+                    }
+                });
+            }
+        });
+
         // Progress Bar
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
