@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <title>Coolz - חסכו עד 40% בחשמל | מערכת קירור חכמה</title>
+    <meta name="description" content="מערכת Coolz החכמה חוסכת עד 40% בחשמל, מפחיתה 70% מקריאות טכנאי ומאריכה חיי הציוד ב-3+ שנים. התחילו לחסוך היום!">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #00cc66;
+            --primary-light: #00ff88;
+            --primary-dark: #00994d;
+            --secondary: #1a1a1a;
+            --danger: #ff6b6b;
+            --danger-light: #ff8a8a;
+            --warning: #ffa500;
+            --text: #1a1a1a;
+            --text-light: #666666;
+            --bg: #ffffff;
+            --bg-alt: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 clamp(1.25rem, 5vw, 2rem);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            z-index: 9999;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, var(--secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 100%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(0, 204, 102, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 204, 102, 0.15);
+            color: var(--primary-light);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 204, 102, 0.3);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: white;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 204, 102, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--primary);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: white;
+            padding: 3rem 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            position: relative;
+        }
+
+        .stat-number {
+            font-size: clamp(3rem, 6vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--danger);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--danger);
+            transition: all 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .problem-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .problem-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .cost-highlight {
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--danger);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+
+        /* Comparison Section - Before & After */
+        .comparison-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .before-after-wrapper {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 3rem;
+        }
+
+        .ba-section {
+            background: var(--bg-alt);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .ba-section.without {
+            border: 3px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .ba-section.with {
+            border: 3px solid rgba(0, 204, 102, 0.3);
+        }
+
+        .ba-header {
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+        }
+
+        .ba-section.without .ba-header {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
+        }
+
+        .ba-section.with .ba-header {
+            background: linear-gradient(135deg, rgba(0, 204, 102, 0.1) 0%, rgba(0, 204, 102, 0.05) 100%);
+        }
+
+        .ba-icon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .ba-header h3 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .ba-section.without h3 {
+            color: var(--danger);
+        }
+
+        .ba-section.with h3 {
+            color: var(--primary);
+        }
+
+        .ba-subtitle {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .ba-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ba-card {
+            display: flex;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: white;
+            border-radius: 12px;
+            align-items: start;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .ba-card:hover {
+            transform: translateX(-3px);
+        }
+
+        .ba-card.bad {
+            border-right: 3px solid var(--danger);
+        }
+
+        .ba-card.good {
+            border-right: 3px solid var(--primary);
+        }
+
+        .ba-icon-small {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .ba-card strong {
+            display: block;
+            font-size: 1.0625rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: var(--text);
+        }
+
+        .ba-card p {
+            font-size: 0.9375rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .ba-cost {
+            padding: 1.5rem 2rem;
+            background: white;
+            border-top: 2px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cost-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .cost-value {
+            font-size: 1.75rem;
+            font-weight: 900;
+        }
+
+        .cost-value.bad {
+            color: var(--danger);
+        }
+
+        .cost-value.good {
+            color: var(--primary);
+        }
+
+        /* Arrow Between */
+        .ba-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem 0;
+        }
+
+        .arrow-circle {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 204, 102, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .arrow-text {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Savings Highlight */
+        .savings-highlight {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 2.5rem 3rem;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 204, 102, 0.3);
+        }
+
+        .savings-icon {
+            font-size: 4rem;
+            flex-shrink: 0;
+        }
+
+        .savings-text h3 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .savings-text p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0;
+        }
+
+        /* Flip Card for Mobile */
+        .flip-container {
+            display: none;
+        }
+
+        /* Mobile Responsive for Comparison */
+        @media (max-width: 968px) {
+            .before-after-wrapper {
+                display: none;
+            }
+
+            .flip-container {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                align-items: center;
+            }
+
+            /* Flip button - ABOVE the card */
+            .flip-toggle {
+                display: flex;
+                background: linear-gradient(135deg, var(--primary), var(--primary-light));
+                color: white;
+                border: none;
+                padding: 1rem 2rem;
+                border-radius: 50px;
+                font-size: 1.125rem;
+                font-weight: 700;
+                box-shadow: 0 8px 30px rgba(0, 204, 102, 0.4);
+                align-items: center;
+                gap: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s;
+                z-index: 10;
+            }
+
+            .flip-toggle:active {
+                transform: scale(0.95);
+            }
+
+            .flip-toggle-icon {
+                font-size: 1.5rem;
+                transition: transform 0.3s;
+            }
+
+            /* ✅ תיקון: אין גובה קבוע ואנחנו לא משתמשים ב-3D */
+            .flip-card {
+                position: relative;
+                width: 100%;
+            }
+
+            .flip-side {
+                position: relative;
+                width: 100%;
+                backface-visibility: visible;
+                -webkit-backface-visibility: visible;
+            }
+
+            .flip-front {
+                display: block;
+            }
+
+            .flip-back {
+                display: none;
+            }
+
+            .flip-card.flipped .flip-front {
+                display: none;
+            }
+
+            .flip-card.flipped .flip-back {
+                display: block;
+            }
+
+            .flip-card.flipped + .flip-toggle .flip-toggle-icon,
+            .flip-toggle.flipped .flip-toggle-icon {
+                transform: rotate(180deg);
+            }
+
+            /* Hide emoji icons on mobile */
+            .ba-section .ba-icon {
+                display: none;
+            }
+
+            /* Savings - HIDDEN on mobile */
+            .savings-highlight {
+                display: none;
+            }
+        }
+
+        /* Solution Section */
+        .solution-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--secondary) 0%, #0a0a0a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-section::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -20%;
+            width: 60%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(0, 204, 102, 0.08) 0%, transparent 70%);
+        }
+
+        .solution-section .section-tag {
+            background: rgba(0, 204, 102, 0.15);
+            color: var(--primary-light);
+        }
+
+        .solution-section .section-title,
+        .solution-section .section-description {
+            color: white;
+        }
+
+        .solution-section .section-description {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .features-showcase {
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 204, 102, 0.2);
+        }
+
+        .feature-card-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .feature-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--danger-light);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .feature-badge.warning {
+            background: rgba(255, 165, 0, 0.2);
+            color: var(--warning);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons .btn {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-buttons .btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .cta-buttons .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: white;
+        }
+
+        .cta-buttons .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-cta-group,
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">❄️ מערכת הקירור החכמה מס' 1 בישראל</div>
+                <h1>
+                    חוסכים עד <span class="highlight">40% בחשמל</span><br>
+                    עם מערכת Coolz החכמה
+                </h1>
+                <p class="hero-subtitle">
+                    מערכת קירור חכמה שעובדת בדיוק כשצריך, חוסכת כסף,<br>
+                    מונעת תקלות ודואגת לציוד שלכם 24/7
+                </p>
+                <div class="hero-cta-group">
+                    <a href="#contact" class="btn btn-primary">
+                        <span>📞</span>
+                        <span>התחילו לחסוך היום</span>
+                    </a>
+                    <a href="#comparison" class="btn btn-secondary">
+                        <span>📊</span>
+                        <span>ראו את ההשוואה</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <span class="stat-number">40%</span>
+                    <div class="stat-label">חיסכון בחשמל</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">70%</span>
+                    <div class="stat-label">פחות טכנאים</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">+3</span>
+                    <div class="stat-label">שנים לציוד</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">24/7</span>
+                    <div class="stat-label">ניטור חכם</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">⚠️ הבעיה</span>
+                <h2 class="section-title">למה עסקים מפסידים אלפי ₪ על קירור?</h2>
+                <p class="section-description">
+                    מערכות קירור מסורתיות יכולות לעלות לכם עד 50,000 ₪ בשנה ללא צורך
+                </p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card fade-in">
+                    <span class="problem-icon">⚡</span>
+                    <h3>צריכת אנרגיה מטורפת</h3>
+                    <p>
+                        מדחסים שעובדים 24/7 גם כשאף אחד לא בעסק.
+                        <span class="cost-highlight">עלות ממוצעת: 15,000-30,000 ₪ לשנה</span>
+                        בבזבוז חשמל מיותר.
+                    </p>
+                </div>
+
+                <div class="problem-card fade-in">
+                    <span class="problem-icon">🔧</span>
+                    <h3>קריאות טכנאי יקרות</h3>
+                    <p>
+                        תקלות קטנות שהופכות לאסון כי אף אחד לא ידע בזמן.
+                        <span class="cost-highlight">קריאת טכנאי: 500-1,500 ₪</span>
+                        פר קריאה, וזה קורה 5-10 פעמים בשנה.
+                    </p>
+                </div>
+
+                <div class="problem-card fade-in">
+                    <span class="problem-icon">📉</span>
+                    <h3>אובדן מוצרים</h3>
+                    <p>
+                        טמפרטורות לא יציבות? המוצרים שלכם נפגמים.
+                        <span class="cost-highlight">עלות ממוצעת: 10,000-20,000 ₪</span>
+                        בשנה במוצרים שנזרקים לפח.
+                    </p>
+                </div>
+
+                <div class="problem-card fade-in">
+                    <span class="problem-icon">⏱️</span>
+                    <h3>שחיקה מוקדמת של ציוד</h3>
+                    <p>
+                        עבודה קשה ללא הפסקה? הציוד נשחק פי 2 מהר יותר.
+                        <span class="cost-highlight">החלפת מקרר: 15,000-40,000 ₪</span>
+                        כל 5-7 שנים במקום 10-15 שנים.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section - Before & After -->
+    <section class="comparison-section" id="comparison">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" style="background: rgba(0, 204, 102, 0.1); color: var(--primary);">⚖️ לפני ואחרי</span>
+                <h2 class="section-title">מערכת קירור ללא Coolz VS עם Coolz</h2>
+                <p class="section-description">
+                    ראו את ההבדל המדהים שמערכת Coolz עושה למערכת הקירור הקיימת שלכם
+                </p>
+            </div>
+
+            <div class="before-after-wrapper fade-in">
+                <!-- Without Coolz -->
+                <div class="ba-section without">
+                    <div class="ba-header">
+                        <span class="ba-icon">😰</span>
+                        <h3>ללא Coolz</h3>
+                        <p class="ba-subtitle">מערכת קירור רגילה</p>
+                    </div>
+                    <div class="ba-content">
+                        <div class="ba-card bad">
+                            <span class="ba-icon-small">❌</span>
+                            <div>
+                                <strong>עובד 24/7 ללא שליטה</strong>
+                                <p>המדחס עובד גם כשאף אחד לא בעסק</p>
+                            </div>
+                        </div>
+                        <div class="ba-card bad">
+                            <span class="ba-icon-small">❌</span>
+                            <div>
+                                <strong>מגלים תקלות מאוחר מדי</strong>
+                                <p>יודעים על בעיה רק כשהמוצרים התקלקלו</p>
+                            </div>
+                        </div>
+                        <div class="ba-card bad">
+                            <span class="ba-icon-small">❌</span>
+                            <div>
+                                <strong>טכנאי לכל דבר קטן</strong>
+                                <p>500-1,500 ₪ לכל ביקור מיותר</p>
+                            </div>
+                        </div>
+                        <div class="ba-card bad">
+                            <span class="ba-icon-small">❌</span>
+                            <div>
+                                <strong>אין תיעוד טיפולים</strong>
+                                <p>תשלומים כפולים באחריות</p>
+                            </div>
+                        </div>
+                        <div class="ba-card bad">
+                            <span class="ba-icon-small">❌</span>
+                            <div>
+                                <strong>דאגה מתמדת</strong>
+                                <p>אף פעם לא יודעים מה קורה שם</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ba-cost">
+                        <span class="cost-label">עלות שנתית:</span>
+                        <span class="cost-value bad">~50,000 ₪</span>
+                    </div>
+                </div>
+
+                <!-- Arrow / Divider -->
+                <div class="ba-arrow">
+                    <div class="arrow-circle">
+                        <span>⬅</span>
+                    </div>
+                    <div class="arrow-text">הוסיפו Coolz</div>
+                </div>
+
+                <!-- With Coolz -->
+                <div class="ba-section with">
+                    <div class="ba-header">
+                        <span class="ba-icon">🚀</span>
+                        <h3>עם Coolz</h3>
+                        <p class="ba-subtitle">אותה מערכת + בקרה חכמה</p>
+                    </div>
+                    <div class="ba-content">
+                        <div class="ba-card good">
+                            <span class="ba-icon-small">✅</span>
+                            <div>
+                                <strong>עובד רק כשצריך</strong>
+                                <p>תזמון חכם חוסך 40% חשמל</p>
+                            </div>
+                        </div>
+                        <div class="ba-card good">
+                            <span class="ba-icon-small">✅</span>
+                            <div>
+                                <strong>התראות מיידיות</strong>
+                                <p>יודעים על בעיה לפני שהיא גורמת נזק</p>
+                            </div>
+                        </div>
+                        <div class="ba-card good">
+                            <span class="ba-icon-small">✅</span>
+                            <div>
+                                <strong>שליטה מרחוק</strong>
+                                <p>משנים הגדרות מהסמארטפון, ללא טכנאי</p>
+                            </div>
+                        </div>
+                        <div class="ba-card good">
+                            <span class="ba-icon-small">✅</span>
+                            <div>
+                                <strong>ספר טיפולים דיגיטלי</strong>
+                                <p>תיעוד אוטומטי של הכל + אחריות</p>
+                            </div>
+                        </div>
+                        <div class="ba-card good">
+                            <span class="ba-icon-small">✅</span>
+                            <div>
+                                <strong>שקט נפשי מלא</strong>
+                                <p>ניטור 24/7, אתם ישנים בשקט</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ba-cost">
+                        <span class="cost-label">עלות שנתית:</span>
+                        <span class="cost-value good">~25,000 ₪</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flip Card for Mobile Only -->
+            <div class="flip-container fade-in">
+                <!-- Flip Toggle Button -->
+                <button class="flip-toggle" id="flipButton">
+                    <span class="flip-toggle-icon">🔄</span>
+                    <span id="flipButtonText">ראו עם Coolz</span>
+                </button>
+
+                <!-- Flip Card -->
+                <div class="flip-card" id="flipCard">
+                    <!-- Front Side - Without Coolz -->
+                    <div class="flip-side flip-front">
+                        <div class="ba-section without">
+                            <div class="ba-header">
+                                <h3>ללא Coolz</h3>
+                                <p class="ba-subtitle">מערכת קירור רגילה</p>
+                            </div>
+                            <div class="ba-content">
+                                <div class="ba-card bad">
+                                    <span class="ba-icon-small">❌</span>
+                                    <div>
+                                        <strong>עובד 24/7 ללא שליטה</strong>
+                                        <p>המדחס עובד גם כשאף אחד לא בעסק</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card bad">
+                                    <span class="ba-icon-small">❌</span>
+                                    <div>
+                                        <strong>מגלים תקלות מאוחר מדי</strong>
+                                        <p>יודעים על בעיה רק כשהמוצרים התקלקלו</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card bad">
+                                    <span class="ba-icon-small">❌</span>
+                                    <div>
+                                        <strong>טכנאי לכל דבר קטן</strong>
+                                        <p>500-1,500 ₪ לכל ביקור מיותר</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card bad">
+                                    <span class="ba-icon-small">❌</span>
+                                    <div>
+                                        <strong>אין תיעוד טיפולים</strong>
+                                        <p>תשלומים כפולים באחריות</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card bad">
+                                    <span class="ba-icon-small">❌</span>
+                                    <div>
+                                        <strong>דאגה מתמדת</strong>
+                                        <p>אף פעם לא יודעים מה קורה שם</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ba-cost">
+                                <span class="cost-label">עלות שנתית:</span>
+                                <span class="cost-value bad">~50,000 ₪</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Back Side - With Coolz -->
+                    <div class="flip-side flip-back">
+                        <div class="ba-section with">
+                            <div class="ba-header">
+                                <h3>עם Coolz</h3>
+                                <p class="ba-subtitle">אותה מערכת + בקרה חכמה</p>
+                            </div>
+                            <div class="ba-content">
+                                <div class="ba-card good">
+                                    <span class="ba-icon-small">✅</span>
+                                    <div>
+                                        <strong>עובד רק כשצריך</strong>
+                                        <p>תזמון חכם חוסך 40% חשמל</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card good">
+                                    <span class="ba-icon-small">✅</span>
+                                    <div>
+                                        <strong>התראות מיידיות</strong>
+                                        <p>יודעים על בעיה לפני שהיא גורמת נזק</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card good">
+                                    <span class="ba-icon-small">✅</span>
+                                    <div>
+                                        <strong>שליטה מרחוק</strong>
+                                        <p>משנים הגדרות מהסמארטפון, ללא טכנאי</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card good">
+                                    <span class="ba-icon-small">✅</span>
+                                    <div>
+                                        <strong>ספר טיפולים דיגיטלי</strong>
+                                        <p>תיעוד אוטומטי של הכל + אחריות</p>
+                                    </div>
+                                </div>
+                                <div class="ba-card good">
+                                    <span class="ba-icon-small">✅</span>
+                                    <div>
+                                        <strong>שקט נפשי מלא</strong>
+                                        <p>ניטור 24/7, אתם ישנים בשקט</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ba-cost">
+                                <span class="cost-label">עלות שנתית:</span>
+                                <span class="cost-value good">~25,000 ₪</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Savings Highlight (למעלה מוסתר במובייל) -->
+            </div>
+
+            <!-- Savings Highlight -->
+            <div class="savings-highlight fade-in">
+                <div class="savings-icon">💰</div>
+                <div class="savings-text">
+                    <h3>חיסכון של 25,000 ₪ בשנה!</h3>
+                    <p>אותה מערכת קירור, חצי מהעלויות</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section with Tabs -->
+    <section class="solution-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">💡 הפתרון</span>
+                <h2 class="section-title">איך Coolz חוסכת לכם כסף?</h2>
+                <p class="section-description">
+                    3 תחומי חיסכון מרכזיים שישנו את העסק שלכם
+                </p>
+            </div>
+
+            <div class="features-showcase">
+                <div class="feature-tabs">
+                    <button class="tab-btn active" data-tab="energy">⚡ חיסכון בחשמל</button>
+                    <button class="tab-btn" data-tab="maintenance">🔧 חיסכון בטכנאים</button>
+                    <button class="tab-btn" data-tab="equipment">🛡️ הארכת חיי ציוד</button>
+                </div>
+
+                <!-- Energy Tab -->
+                <div class="tab-content active" id="energy">
+                    <div class="features-grid">
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">📅</div>
+                            <h3>תזמון חכם של פעילות</h3>
+                            <p>קובעים שעות פעילות מדויקות - המערכת תעבוד רק כשיש לקוחות. העסק פתוח 8:00-18:00? הקירור יעבוד רק אז. <strong>חיסכון של 30-40%</strong> בחשמל מיד.</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">🎯</div>
+                            <h3>בקרת טמפרטורה מדויקת</h3>
+                            <p>שמירה על הטמפרטורה האופטימלית בדיוק - לא יותר קר מדי, לא יותר חם מדי. כל מעלה מיותרת זה 6% בזבוז חשמל!</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">🔍</div>
+                            <h3><span class="feature-badge">זיהוי</span>גילוי מוקדם של בעיות</h3>
+                            <p>המערכת מזהה כשהמדחס עובד קשה מדי והוא מתריע. זה אומר שיש בעיה (רדיאטור מלוכלך, חוסר גז) שצורכת חשמל מיותר - ואתם יכולים לטפל בה לפני שזה עולה כסף.</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">🚪</div>
+                            <h3><span class="feature-badge">חריגה</span>התראת דלת פתוחה</h3>
+                            <p>דלת פתוחה = בזבוז חשמל מטורף. התראה מיידית תבטיח שלא תשכחו דלת פתוחה ותחסכו מאות שקלים בחודש.</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">❄️</div>
+                            <h3><span class="feature-badge warning">התראה</span>מאייד קפוא</h3>
+                            <p>כשהמאייד קופא, המערכת עובדת לחינם - צורכת חשמל בלי לקרר. ההתראה תעצור את הבזבוז מיד.</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">📊</div>
+                            <h3>עוגת צריכה חכמה</h3>
+                            <p>גרף שמראה בדיוק לאן הולך החשמל. רואים שהרדיאטור צורך יותר מדי? זה סימן לבעיה. תופסים את זה לפני שזה עולה אלפי שקלים.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maintenance Tab -->
+                <div class="tab-content" id="maintenance">
+                    <div class="features-grid">
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">📱</div>
+                            <h3>שליטה מרחוק מלאה</h3>
+                            <p>צריכים לשנות טמפרטורה? לכוונן הגדרות? הכל נעשה מהטלפון ב-30 שניות. <strong>חוסכים 300-500 ₪</strong> על כל ביקור טכנאי שלא צריך.</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">🔧</div>
+                            <h3>תיקון עצמי של תקלות פשוטות</h3>
+                            <p>קפצה הגנה? המערכת תגיד לכם בדיוק מה הבעיה ואיך לתקן. ברוב המקרים זה פשוט כמו לחיצת כפתור - ואתם חוסכים <strong>500-1,500 ₪</strong> על טכנאי.</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">📋</div>
+                            <h3>ספר טיפולים דיגיטלי</h3>
+                            <p>כל טיפול מתועד אוטומטית - תאריך, עלות, אחריות, מי ביצע. אף פעם לא תשלמו פעמיים על אותו תיקון שבאחריות. <strong>חיסכון של אלפי ₪</strong> בשנה.</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">🔔</div>
+                            <h3>התראות תחזוקה מונעת</h3>
+                            <p>המערכת תזכיר לכם לנקות רדיאטור, לבדוק מסננים, ולעשות תחזוקה. תחזוקה בזמן = <strong>פחות תקלות ב-70%</strong> ופחות קריאות טכנאי יקרות.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equipment Tab -->
+                <div class="tab-content" id="equipment">
+                    <div class="features-grid">
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">⏰</div>
+                            <h3>הפחתת שעות עבודה</h3>
+                            <p>המדחס עובד רק כשצריך = פחות שחיקה. לקוחותינו מדווחים על <strong>+3 שנים</strong> נוספות לחיי הציוד. מקרר חדש עולה 15,000-40,000 ₪ - זה החיסכון!</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">⚙️</div>
+                            <h3><span class="feature-badge">זיהוי</span>מניעת עומס יתר</h3>
+                            <p>המערכת מזהה כשהמדחס עובד קשה מדי ומתריע מיד. זה מונע נזק יקר למדחס - תיקון של מדחס שרוף עולה <strong>3,000-8,000 ₪</strong>.</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">🧹</div>
+                            <h3>תחזוקה מונעת אוטומטית</h3>
+                            <p>ניקוי רדיאטור בזמן, החלפת מסננים, בדיקות תקופתיות - הכל עם תזכורות אוטומטיות. ציוד מתוחזק = ציוד שמחזיק <strong>פי 2 יותר זמן</strong>.</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-card-icon">🚪</div>
+                            <h3><span class="feature-badge">חריגה</span>מניעת בלאי מדלת פתוחה</h3>
+                            <p>כל פעם שדלת נשארת פתוחה, המדחס עובד פרא ונשחק מהר. ההתראה מונעת את זה - <strong>חוסכת שנים</strong> של חיי המדחס.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>מוכנים לחסוך אלפי ₪ בשנה?</h2>
+            <p>הצטרפו ל-500+ עסקים שכבר חוסכים עם Coolz</p>
+            
+            <div class="cta-buttons">
+                <a href="tel:076-599770" class="btn btn-primary">
+                    <span>📞</span>
+                    <span>התקשרו עכשיו: 076-599770</span>
+                </a>
+                <a href="mailto:info@coolz.co.il" class="btn btn-secondary">
+                    <span>📧</span>
+                    <span>info@coolz.co.il</span>
+                </a>
+            </div>
+
+            <p style="margin-top: 2rem; font-size: 1.125rem; opacity: 0.9;">
+                📍 אלי כהן 24, אשקלון | זמינים 24/7
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Flip Card Function (Mobile Only)
+        document.addEventListener('DOMContentLoaded', function() {
+            const flipButton = document.getElementById('flipButton');
+            if (flipButton) {
+                flipButton.addEventListener('click', function() {
+                    const card = document.getElementById('flipCard');
+                    const buttonText = document.getElementById('flipButtonText');
+                    const btn = document.getElementById('flipButton');
+
+                    if (card && buttonText) {
+                        card.classList.toggle('flipped');
+                        btn.classList.toggle('flipped');
+
+                        if (card.classList.contains('flipped')) {
+                            buttonText.textContent = 'חזרה ללא Coolz';
+                        } else {
+                            buttonText.textContent = 'ראו עם Coolz';
+                        }
+                    }
+                });
+            }
+        });
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Fade In Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Tab Functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabName = btn.dataset.tab;
+                
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(tabName).classList.add('active');
+            });
+        });
+
+        // Animate Stats on Scroll
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    const text = statNumber.textContent;
+                    
+                    if (text.includes('%')) {
+                        animateNumber(statNumber, parseInt(text), '%');
+                    } else if (text.includes('+')) {
+                        animateNumber(statNumber, parseInt(text.replace('+', '')), '+');
+                    } else {
+                        statNumber.textContent = text;
+                    }
+                    
+                    statObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-item').forEach(stat => statObserver.observe(stat));
+
+        function animateNumber(element, target, suffix = '') {
+            let current = 0;
+            const increment = target / 60;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent =
+                    (suffix === '+' ? '+' : '') +
+                    Math.round(current) +
+                    (suffix === '%' ? '%' : '');
+            }, 25);
+        }
+    </script>
+</body>
+</html>
