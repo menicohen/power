@@ -521,16 +521,15 @@
             .flip-container {
                 display: block;
                 perspective: 1000px;
-                margin-bottom: 3rem;
+                padding-bottom: 3rem;
             }
 
             .flip-card {
                 position: relative;
                 width: 100%;
-                min-height: 580px;
+                min-height: 650px;
                 transform-style: preserve-3d;
                 transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-                margin-bottom: 2rem;
             }
 
             .flip-card.flipped {
@@ -552,24 +551,19 @@
                 transform: rotateY(180deg);
             }
 
-            /* Replace emoji with button in mobile */
+            /* Hide emoji icons on mobile */
             .ba-section .ba-icon {
                 display: none;
             }
 
-            .ba-header {
-                position: relative;
-                padding-top: 4.5rem;
-            }
-
-            /* Flip button inside header */
+            /* Flip button - ALWAYS visible, outside the flip card */
             .flip-toggle {
                 display: flex;
                 position: absolute;
                 top: 1rem;
                 left: 50%;
                 transform: translateX(-50%);
-                z-index: 10;
+                z-index: 100;
                 background: linear-gradient(135deg, var(--primary), var(--primary-light));
                 color: white;
                 border: none;
@@ -582,6 +576,7 @@
                 gap: 0.5rem;
                 cursor: pointer;
                 transition: all 0.3s;
+                backface-visibility: visible !important;
             }
 
             .flip-toggle:active {
@@ -593,36 +588,9 @@
                 transition: transform 0.5s;
             }
 
-            .flip-card.flipped .flip-toggle .flip-toggle-icon {
-                transform: rotate(180deg);
-            }
-
-            /* More space for content */
-            .ba-content {
-                padding: 1.5rem;
-                margin-bottom: 1rem;
-            }
-
-            .ba-card {
-                padding: 1rem;
-                margin-bottom: 0.75rem;
-            }
-
-            .ba-card strong {
-                font-size: 1rem;
-            }
-
-            .ba-card p {
-                font-size: 0.875rem;
-            }
-
-            .ba-cost {
-                padding: 1.25rem 1.5rem;
-                margin-bottom: 1rem;
-            }
-
+            /* Savings - more space from card */
             .savings-highlight {
-                margin-top: 0;
+                margin-top: 4rem;
                 flex-direction: column;
                 text-align: center;
                 padding: 2rem 1.5rem;
@@ -1105,16 +1073,17 @@
 
             <!-- Flip Card for Mobile Only -->
             <div class="flip-container fade-in">
+                <!-- Flip Toggle Button - Outside card so it's always visible -->
+                <button class="flip-toggle" id="flipButton">
+                    <span class="flip-toggle-icon">🔄</span>
+                    <span id="flipButtonText">ראו עם Coolz</span>
+                </button>
+
                 <div class="flip-card" id="flipCard">
                     <!-- Front Side - Without Coolz -->
                     <div class="flip-side flip-front">
                         <div class="ba-section without">
                             <div class="ba-header">
-                                <!-- Flip Toggle Button -->
-                                <button class="flip-toggle" id="flipButton">
-                                    <span class="flip-toggle-icon">🔄</span>
-                                    <span id="flipButtonText">ראו עם Coolz</span>
-                                </button>
                                 <h3>ללא Coolz</h3>
                                 <p class="ba-subtitle">מערכת קירור רגילה</p>
                             </div>
