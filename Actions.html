@@ -292,127 +292,250 @@
             font-weight: 700;
         }
 
-        /* Comparison Section */
+        /* Comparison Section - Before & After */
         .comparison-section {
             padding: 6rem 0;
             background: white;
         }
 
-        .comparison-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: var(--bg-alt);
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        .before-after-wrapper {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 3rem;
         }
 
-        .comparison-header {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .ba-section {
+            background: var(--bg-alt);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .ba-section.without {
+            border: 3px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .ba-section.with {
+            border: 3px solid rgba(0, 204, 102, 0.3);
+        }
+
+        .ba-header {
+            padding: 2rem;
+            text-align: center;
             background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
         }
 
-        .comparison-col {
-            padding: 2.5rem;
-            text-align: center;
+        .ba-section.without .ba-header {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
         }
 
-        .comparison-col.bad {
-            background: rgba(255, 107, 107, 0.05);
-            border-right: 2px solid rgba(255, 107, 107, 0.2);
+        .ba-section.with .ba-header {
+            background: linear-gradient(135deg, rgba(0, 204, 102, 0.1) 0%, rgba(0, 204, 102, 0.05) 100%);
         }
 
-        .comparison-col.good {
-            background: rgba(0, 204, 102, 0.05);
+        .ba-icon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 1rem;
         }
 
-        .comparison-col h3 {
+        .ba-header h3 {
             font-size: 1.75rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
         }
 
-        .comparison-col.bad h3 {
+        .ba-section.without h3 {
             color: var(--danger);
         }
 
-        .comparison-col.good h3 {
+        .ba-section.with h3 {
             color: var(--primary);
         }
 
-        .comparison-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
+        .ba-subtitle {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 500;
         }
 
-        .comparison-body {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .ba-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        .comparison-list {
-            padding: 2.5rem;
-            list-style: none;
-        }
-
-        .comparison-list.bad {
-            background: rgba(255, 107, 107, 0.02);
-            border-right: 2px solid rgba(255, 107, 107, 0.1);
-        }
-
-        .comparison-list.good {
-            background: rgba(0, 204, 102, 0.02);
-        }
-
-        .comparison-item {
+        .ba-card {
             display: flex;
             gap: 1rem;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
+            padding: 1.25rem;
             background: white;
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             align-items: start;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
         }
 
-        .comparison-item-icon {
+        .ba-card:hover {
+            transform: translateX(-3px);
+        }
+
+        .ba-card.bad {
+            border-right: 3px solid var(--danger);
+        }
+
+        .ba-card.good {
+            border-right: 3px solid var(--primary);
+        }
+
+        .ba-icon-small {
             font-size: 1.5rem;
             flex-shrink: 0;
-            margin-top: 0.25rem;
         }
 
-        .comparison-item-text {
-            flex: 1;
-        }
-
-        .comparison-item-title {
+        .ba-card strong {
+            display: block;
+            font-size: 1.0625rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+            color: var(--text);
         }
 
-        .comparison-item.bad .comparison-item-icon {
-            color: var(--danger);
-        }
-
-        .comparison-item.good .comparison-item-icon {
-            color: var(--primary);
-        }
-
-        .comparison-item.bad .comparison-item-title {
-            color: var(--danger);
-        }
-
-        .comparison-item.good .comparison-item-title {
-            color: var(--primary);
-        }
-
-        .comparison-item p {
-            color: var(--text-light);
+        .ba-card p {
             font-size: 0.9375rem;
-            line-height: 1.6;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .ba-cost {
+            padding: 1.5rem 2rem;
+            background: white;
+            border-top: 2px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cost-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .cost-value {
+            font-size: 1.75rem;
+            font-weight: 900;
+        }
+
+        .cost-value.bad {
+            color: var(--danger);
+        }
+
+        .cost-value.good {
+            color: var(--primary);
+        }
+
+        /* Arrow Between */
+        .ba-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem 0;
+        }
+
+        .arrow-circle {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 204, 102, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .arrow-text {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Savings Highlight */
+        .savings-highlight {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 2.5rem 3rem;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 204, 102, 0.3);
+        }
+
+        .savings-icon {
+            font-size: 4rem;
+            flex-shrink: 0;
+        }
+
+        .savings-text h3 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .savings-text p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0;
+        }
+
+        /* Mobile Responsive for Comparison */
+        @media (max-width: 968px) {
+            .before-after-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .ba-arrow {
+                flex-direction: row;
+                padding: 0;
+            }
+
+            .arrow-circle span {
+                transform: rotate(90deg);
+            }
+
+            .savings-highlight {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .savings-text h3 {
+                font-size: 1.75rem;
+            }
+
+            .savings-text p {
+                font-size: 1.125rem;
+            }
         }
 
         /* Solution Section */
@@ -609,17 +732,6 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .comparison-header,
-            .comparison-body {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-col.bad,
-            .comparison-list.bad {
-                border-right: none;
-                border-bottom: 2px solid rgba(255, 107, 107, 0.2);
-            }
-
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -766,107 +878,133 @@
         </div>
     </section>
 
-    <!-- Comparison Section -->
+    <!-- Comparison Section - Before & After -->
     <section class="comparison-section" id="comparison">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag" style="background: rgba(0, 204, 102, 0.1); color: var(--primary);">⚖️ ההשוואה</span>
-                <h2 class="section-title">מערכת רגילה VS מערכת Coolz</h2>
+                <span class="section-tag" style="background: rgba(0, 204, 102, 0.1); color: var(--primary);">⚖️ לפני ואחרי</span>
+                <h2 class="section-title">מערכת קירור ללא Coolz VS עם Coolz</h2>
                 <p class="section-description">
-                    ההבדל שישנה את העסק שלכם לנצח
+                    ראו את ההבדל המדהים שמערכת Coolz עושה למערכת הקירור הקיימת שלכם
                 </p>
             </div>
 
-            <div class="comparison-container fade-in">
-                <div class="comparison-header">
-                    <div class="comparison-col bad">
-                        <span class="comparison-icon">😰</span>
-                        <h3>מערכת קירור רגילה</h3>
-                        <p>מפסידים כסף כל יום</p>
+            <div class="before-after-wrapper fade-in">
+                <!-- Without Coolz -->
+                <div class="ba-section without">
+                    <div class="ba-header">
+                        <span class="ba-icon">😰</span>
+                        <h3>ללא Coolz</h3>
+                        <p class="ba-subtitle">מערכת קירור רגילה</p>
                     </div>
-                    <div class="comparison-col good">
-                        <span class="comparison-icon">🚀</span>
-                        <h3>מערכת Coolz החכמה</h3>
-                        <p>חוסכים כסף אוטומטית</p>
+                    <div class="ba-content">
+                        <div class="ba-card bad">
+                            <span class="ba-icon-small">❌</span>
+                            <div>
+                                <strong>עובד 24/7 ללא שליטה</strong>
+                                <p>המדחס עובד גם כשאף אחד לא בעסק</p>
+                            </div>
+                        </div>
+                        <div class="ba-card bad">
+                            <span class="ba-icon-small">❌</span>
+                            <div>
+                                <strong>מגלים תקלות מאוחר מדי</strong>
+                                <p>יודעים על בעיה רק כשהמוצרים התקלקלו</p>
+                            </div>
+                        </div>
+                        <div class="ba-card bad">
+                            <span class="ba-icon-small">❌</span>
+                            <div>
+                                <strong>טכנאי לכל דבר קטן</strong>
+                                <p>500-1,500 ₪ לכל ביקור מיותר</p>
+                            </div>
+                        </div>
+                        <div class="ba-card bad">
+                            <span class="ba-icon-small">❌</span>
+                            <div>
+                                <strong>אין תיעוד טיפולים</strong>
+                                <p>תשלומים כפולים באחריות</p>
+                            </div>
+                        </div>
+                        <div class="ba-card bad">
+                            <span class="ba-icon-small">❌</span>
+                            <div>
+                                <strong>דאגה מתמדת</strong>
+                                <p>אף פעם לא יודעים מה קורה שם</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ba-cost">
+                        <span class="cost-label">עלות שנתית:</span>
+                        <span class="cost-value bad">~50,000 ₪</span>
                     </div>
                 </div>
 
-                <div class="comparison-body">
-                    <ul class="comparison-list bad">
-                        <li class="comparison-item bad">
-                            <span class="comparison-item-icon">❌</span>
-                            <div class="comparison-item-text">
-                                <div class="comparison-item-title">עובד 24/7 ללא שליטה</div>
-                                <p>המדחס עובד גם בלילה, גם בסוף שבוע, גם כשאף אחד לא שם</p>
-                            </div>
-                        </li>
-                        <li class="comparison-item bad">
-                            <span class="comparison-item-icon">❌</span>
-                            <div class="comparison-item-text">
-                                <div class="comparison-item-title">מגלים תקלות מאוחר מדי</div>
-                                <p>נדע על בעיה רק כשהמוצרים כבר התקלקלו</p>
-                            </div>
-                        </li>
-                        <li class="comparison-item bad">
-                            <span class="comparison-item-icon">❌</span>
-                            <div class="comparison-item-text">
-                                <div class="comparison-item-title">טכנאי לכל דבר קטן</div>
-                                <p>500-1,500 ₪ לכל ביקור, גם אם זה רק איפוס</p>
-                            </div>
-                        </li>
-                        <li class="comparison-item bad">
-                            <span class="comparison-item-icon">❌</span>
-                            <div class="comparison-item-text">
-                                <div class="comparison-item-title">אין תיעוד טיפולים</div>
-                                <p>שוכחים מתי עשינו תחזוקה, תשלומים כפולים באחריות</p>
-                            </div>
-                        </li>
-                        <li class="comparison-item bad">
-                            <span class="comparison-item-icon">❌</span>
-                            <div class="comparison-item-text">
-                                <div class="comparison-item-title">דאגה מתמדת</div>
-                                <p>תמיד חוששים שמשהו לא בסדר, אין שקט נפשי</p>
-                            </div>
-                        </li>
-                    </ul>
+                <!-- Arrow / Divider -->
+                <div class="ba-arrow">
+                    <div class="arrow-circle">
+                        <span>⬅</span>
+                    </div>
+                    <div class="arrow-text">הוסיפו Coolz</div>
+                </div>
 
-                    <ul class="comparison-list good">
-                        <li class="comparison-item good">
-                            <span class="comparison-item-icon">✅</span>
-                            <div class="comparison-item-text">
-                                <div class="comparison-item-title">עובד רק כשצריך</div>
-                                <p>תזמון חכם - המערכת יודעת מתי לעבוד ומתי לנוח</p>
+                <!-- With Coolz -->
+                <div class="ba-section with">
+                    <div class="ba-header">
+                        <span class="ba-icon">🚀</span>
+                        <h3>עם Coolz</h3>
+                        <p class="ba-subtitle">אותה מערכת + בקרה חכמה</p>
+                    </div>
+                    <div class="ba-content">
+                        <div class="ba-card good">
+                            <span class="ba-icon-small">✅</span>
+                            <div>
+                                <strong>עובד רק כשצריך</strong>
+                                <p>תזמון חכם חוסך 40% חשמל</p>
                             </div>
-                        </li>
-                        <li class="comparison-item good">
-                            <span class="comparison-item-icon">✅</span>
-                            <div class="comparison-item-text">
-                                <div class="comparison-item-title">התראות מיידיות</div>
-                                <p>יודעים על כל בעיה בזמן אמת, לפני שהיא הופכת לתקלה</p>
+                        </div>
+                        <div class="ba-card good">
+                            <span class="ba-icon-small">✅</span>
+                            <div>
+                                <strong>התראות מיידיות</strong>
+                                <p>יודעים על בעיה לפני שהיא גורמת נזק</p>
                             </div>
-                        </li>
-                        <li class="comparison-item good">
-                            <span class="comparison-item-icon">✅</span>
-                            <div class="comparison-item-text">
-                                <div class="comparison-item-title">שליטה מרחוק</div>
-                                <p>משנים הגדרות מהסמארטפון, ללא עלות טכנאי</p>
+                        </div>
+                        <div class="ba-card good">
+                            <span class="ba-icon-small">✅</span>
+                            <div>
+                                <strong>שליטה מרחוק</strong>
+                                <p>משנים הגדרות מהסמארטפון, ללא טכנאי</p>
                             </div>
-                        </li>
-                        <li class="comparison-item good">
-                            <span class="comparison-item-icon">✅</span>
-                            <div class="comparison-item-text">
-                                <div class="comparison-item-title">ספר טיפולים דיגיטלי</div>
-                                <p>תיעוד אוטומטי של כל תחזוקה, אחריות ועלויות</p>
+                        </div>
+                        <div class="ba-card good">
+                            <span class="ba-icon-small">✅</span>
+                            <div>
+                                <strong>ספר טיפולים דיגיטלי</strong>
+                                <p>תיעוד אוטומטי של הכל + אחריות</p>
                             </div>
-                        </li>
-                        <li class="comparison-item good">
-                            <span class="comparison-item-icon">✅</span>
-                            <div class="comparison-item-text">
-                                <div class="comparison-item-title">שינה בלילה</div>
-                                <p>המערכת שומרת עליכם 24/7 - אתם יכולים לנוח בשקט</p>
+                        </div>
+                        <div class="ba-card good">
+                            <span class="ba-icon-small">✅</span>
+                            <div>
+                                <strong>שקט נפשי מלא</strong>
+                                <p>ניטור 24/7, אתם ישנים בשקט</p>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
+                    <div class="ba-cost">
+                        <span class="cost-label">עלות שנתית:</span>
+                        <span class="cost-value good">~25,000 ₪</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Savings Highlight -->
+            <div class="savings-highlight fade-in">
+                <div class="savings-icon">💰</div>
+                <div class="savings-text">
+                    <h3>חיסכון של 25,000 ₪ בשנה!</h3>
+                    <p>אותה מערכת קירור, חצי מהעלויות</p>
                 </div>
             </div>
         </div>
