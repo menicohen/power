@@ -512,6 +512,11 @@
             display: none;
         }
 
+        /* Flip Button on top of card */
+        .flip-toggle {
+            display: none;
+        }
+
         /* Mobile Responsive for Comparison */
         @media (max-width: 968px) {
             .before-after-wrapper {
@@ -521,7 +526,8 @@
             .flip-container {
                 display: block;
                 perspective: 1000px;
-                margin-bottom: 3rem;
+                margin-bottom: 2rem;
+                position: relative;
             }
 
             .flip-card {
@@ -551,52 +557,63 @@
                 transform: rotateY(180deg);
             }
 
+            /* Flip button positioned at top center */
             .flip-toggle {
-                position: fixed;
-                bottom: 2rem;
-                right: 50%;
-                transform: translateX(50%);
+                display: flex;
+                position: absolute;
+                top: -60px;
+                left: 50%;
+                transform: translateX(-50%);
                 z-index: 100;
                 background: linear-gradient(135deg, var(--primary), var(--primary-light));
                 color: white;
                 border: none;
-                padding: 1rem 2rem;
+                padding: 0.875rem 1.75rem;
                 border-radius: 50px;
-                font-size: 1.125rem;
+                font-size: 1rem;
                 font-weight: 700;
-                box-shadow: 0 10px 40px rgba(0, 204, 102, 0.4);
-                display: flex;
+                box-shadow: 0 8px 30px rgba(0, 204, 102, 0.4);
                 align-items: center;
-                gap: 0.75rem;
+                gap: 0.625rem;
                 cursor: pointer;
                 transition: all 0.3s;
             }
 
             .flip-toggle:active {
-                transform: translateX(50%) scale(0.95);
+                transform: translateX(-50%) scale(0.95);
             }
 
             .flip-toggle-icon {
-                font-size: 1.5rem;
-                transition: transform 0.3s;
+                font-size: 1.25rem;
+                transition: transform 0.5s;
             }
 
-            .flip-card.flipped .flip-toggle-icon {
+            .flip-card.flipped ~ .flip-toggle .flip-toggle-icon {
                 transform: rotate(180deg);
             }
 
+            /* Hide emoji icons on mobile */
+            .ba-section .ba-icon {
+                display: none;
+            }
+
             .savings-highlight {
+                margin-top: 2rem;
                 flex-direction: column;
                 text-align: center;
-                padding: 2rem;
+                padding: 2rem 1.5rem;
             }
 
             .savings-text h3 {
-                font-size: 1.75rem;
+                font-size: 1.625rem;
             }
 
             .savings-text p {
-                font-size: 1.125rem;
+                font-size: 1rem;
+            }
+
+            .savings-icon {
+                font-size: 3.5rem;
             }
         }
 
@@ -1063,6 +1080,12 @@
 
             <!-- Flip Card for Mobile Only -->
             <div class="flip-container fade-in">
+                <!-- Flip Toggle Button -->
+                <button class="flip-toggle" id="flipButton">
+                    <span class="flip-toggle-icon">🔄</span>
+                    <span id="flipButtonText">ראו עם Coolz</span>
+                </button>
+
                 <div class="flip-card" id="flipCard">
                     <!-- Front Side - Without Coolz -->
                     <div class="flip-side flip-front">
@@ -1168,12 +1191,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Flip Toggle Button -->
-                <button class="flip-toggle" id="flipButton">
-                    <span class="flip-toggle-icon">🔄</span>
-                    <span id="flipButtonText">ראו עם Coolz</span>
-                </button>
             </div>
 
             <!-- Savings Highlight -->
