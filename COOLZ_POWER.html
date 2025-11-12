@@ -13,10 +13,11 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
             line-height: 1.7;
             color: #333;
-            background-color: #f9f9f9;
+            background-color: #f5f5f5;
+            overflow-x: hidden;
         }
 
         .container {
@@ -25,225 +26,495 @@
             padding: 0 20px;
         }
 
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00cc66, #00ff88);
+            z-index: 9999;
+            transition: width 0.2s ease;
+        }
+
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
             color: white;
-            padding: 100px 20px 80px;
+            padding: 120px 20px 100px;
             text-align: center;
             position: relative;
             overflow: hidden;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 204, 102, 0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".1" fill="%2300cc66"/></svg>') no-repeat bottom;
-            background-size: cover;
-            opacity: 0.3;
+            height: 150px;
+            background: linear-gradient(to top, #f5f5f5, transparent);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            font-weight: 800;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            background: linear-gradient(135deg, #fff 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero .subtitle {
-            font-size: 1.4em;
-            margin-bottom: 15px;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         .hero p {
             font-size: 1.2em;
-            opacity: 0.85;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            position: relative;
-            z-index: 1;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .cta-button {
             display: inline-block;
-            background: #00cc66;
+            background: linear-gradient(135deg, #00cc66 0%, #00ff88 100%);
             color: white;
-            padding: 15px 40px;
+            padding: 18px 45px;
             text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.1em;
+            border-radius: 50px;
+            font-size: 1.2em;
             font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 204, 102, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 204, 102, 0.3);
             position: relative;
-            z-index: 1;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         .cta-button:hover {
-            background: #00b359;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 204, 102, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 204, 102, 0.5);
         }
+
+        .cta-button:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        /* Floating Icons */
+        .floating-icon {
+            position: absolute;
+            font-size: 3em;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .icon-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .icon-2 { top: 20%; right: 15%; animation-delay: 1s; }
+        .icon-3 { bottom: 20%; left: 15%; animation-delay: 2s; }
+        .icon-4 { bottom: 15%; right: 10%; animation-delay: 3s; }
 
         /* Intro Section */
         .intro {
-            background: white;
-            padding: 60px 20px;
+            background: linear-gradient(to bottom, #f5f5f5 0%, white 50%, #f5f5f5 100%);
+            padding: 80px 20px;
             text-align: center;
+            position: relative;
         }
 
         .intro h2 {
-            font-size: 2.5em;
+            font-size: 2.8em;
             color: #1a1a1a;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .intro h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #00cc66, #00ff88);
+            border-radius: 2px;
         }
 
         .intro p {
-            font-size: 1.3em;
-            color: #555;
+            font-size: 1.4em;
+            color: #666;
             max-width: 900px;
-            margin: 0 auto;
-            line-height: 1.8;
+            margin: 30px auto 0;
+            line-height: 1.9;
         }
 
         /* Savings Categories */
         .savings-categories {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin: 60px 0 0;
         }
 
         .category-card {
             background: white;
-            padding: 40px 30px;
-            border-radius: 15px;
+            padding: 45px 35px;
+            border-radius: 20px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 5px solid #00cc66;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 204, 102, 0.1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #00cc66, #00ff88);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
         }
 
         .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 204, 102, 0.15);
+            border-color: rgba(0, 204, 102, 0.3);
         }
 
         .category-icon {
-            font-size: 4em;
-            margin-bottom: 20px;
+            font-size: 4.5em;
+            margin-bottom: 25px;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .category-card:hover .category-icon {
+            animation: none;
+            transform: scale(1.1) rotate(5deg);
+            transition: transform 0.4s ease;
         }
 
         .category-card h3 {
-            font-size: 1.6em;
+            font-size: 1.7em;
             color: #1a1a1a;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
+            font-weight: 700;
         }
 
         .category-card p {
             font-size: 1.1em;
             color: #666;
+            line-height: 1.8;
         }
 
         /* Main Content Sections */
         section {
-            padding: 60px 20px;
+            padding: 80px 20px;
+            position: relative;
         }
 
         section h2 {
-            font-size: 2.5em;
+            font-size: 2.8em;
             color: #1a1a1a;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            font-weight: 700;
         }
 
         section h2 .section-icon {
-            font-size: 1.2em;
+            font-size: 1.3em;
+            background: linear-gradient(135deg, #00cc66, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         section > p {
             font-size: 1.3em;
-            color: #555;
-            margin-bottom: 40px;
-            line-height: 1.8;
+            color: #666;
+            margin-bottom: 50px;
+            line-height: 1.9;
+            max-width: 900px;
         }
 
-        /* Savings Items Grid */
+        /* Accordion Style Savings Items */
+        .savings-accordion {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 204, 102, 0.2);
+        }
+
+        .accordion-item.alert {
+            border-right: 5px solid #ff6b6b;
+        }
+
+        .accordion-item:not(.alert) {
+            border-right: 5px solid #00cc66;
+        }
+
+        .accordion-header {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            background: #f8f8f8;
+        }
+
+        .accordion-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .item-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #00cc66, #00ff88);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.1em;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0, 204, 102, 0.3);
+        }
+
+        .accordion-item.alert .item-number {
+            background: linear-gradient(135deg, #ff6b6b, #ff8a8a);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .accordion-title h3 {
+            color: #1a1a1a;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .accordion-toggle {
+            font-size: 1.5em;
+            color: #00cc66;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .accordion-item.active .accordion-toggle {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        padding 0.4s ease;
+            padding: 0 30px;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            padding: 0 30px 25px;
+        }
+
+        .accordion-content p {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .alert-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b, #ff8a8a);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            margin-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Grid Style (Alternative) */
         .savings-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 25px;
             margin-top: 40px;
         }
 
         .savings-item {
             background: white;
-            padding: 30px;
-            border-radius: 12px;
-            border-right: 4px solid #00cc66;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .savings-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #00cc66, #00ff88);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.4s ease;
+        }
+
+        .savings-item:hover::before {
+            transform: scaleY(1);
         }
 
         .savings-item:hover {
-            transform: translateX(-5px);
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+            transform: translateX(-8px);
+            box-shadow: 0 10px 40px rgba(0, 204, 102, 0.15);
+        }
+
+        .savings-item.alert::before {
+            background: linear-gradient(180deg, #ff6b6b, #ff8a8a);
+        }
+
+        .savings-item.alert:hover {
+            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.15);
         }
 
         .savings-item h3 {
             color: #1a1a1a;
             font-size: 1.4em;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .savings-item p {
-            color: #555;
+            color: #666;
             font-size: 1.05em;
-            line-height: 1.7;
-        }
-
-        .item-number {
-            display: inline-block;
-            background: #00cc66;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 30px;
-            font-weight: 700;
-            margin-left: 10px;
-        }
-
-        /* Alert/Warning Items */
-        .savings-item.alert {
-            border-right-color: #ff6b6b;
-        }
-
-        .savings-item.alert .item-number {
-            background: #ff6b6b;
-        }
-
-        .alert-badge {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.85em;
-            font-weight: 600;
-            margin-right: 8px;
+            line-height: 1.8;
+            margin: 0;
         }
 
         /* Section Backgrounds */
@@ -263,125 +534,428 @@
         .summary {
             background: linear-gradient(135deg, #00cc66 0%, #00994d 100%);
             color: white;
-            padding: 80px 20px;
+            padding: 100px 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .summary-content {
+            position: relative;
+            z-index: 2;
         }
 
         .summary h2 {
-            font-size: 2.8em;
+            font-size: 3em;
             color: white;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             justify-content: center;
+            font-weight: 800;
         }
 
-        .summary p {
-            font-size: 1.4em;
-            margin-bottom: 30px;
+        .summary > p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
             opacity: 0.95;
+            font-weight: 300;
         }
 
         .summary-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .stat-box {
             background: rgba(255, 255, 255, 0.15);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         .stat-box .stat-number {
-            font-size: 3em;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 3.5em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            display: block;
+            letter-spacing: -1px;
         }
 
         .stat-box .stat-label {
-            font-size: 1.2em;
+            font-size: 1.15em;
             opacity: 0.95;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .summary .final-message {
+            font-size: 1.3em;
+            margin-top: 50px;
+            font-weight: 300;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Contact CTA Section */
         .contact-cta {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
             color: white;
-            padding: 80px 20px;
+            padding: 100px 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 204, 102, 0.1), transparent),
+                        radial-gradient(circle at 70% 50%, rgba(0, 204, 102, 0.1), transparent);
+        }
+
+        .contact-cta-content {
+            position: relative;
+            z-index: 2;
         }
 
         .contact-cta h2 {
-            font-size: 2.5em;
+            font-size: 3em;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             justify-content: center;
+            font-weight: 800;
         }
 
-        .contact-cta p {
-            font-size: 1.3em;
-            margin-bottom: 30px;
+        .contact-cta > p {
+            font-size: 1.4em;
+            margin-bottom: 50px;
             opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-buttons {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-bottom: 50px;
         }
 
         .contact-button {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: #00cc66;
+            gap: 12px;
+            background: linear-gradient(135deg, #00cc66 0%, #00ff88 100%);
             color: white;
-            padding: 18px 35px;
+            padding: 20px 40px;
             text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.2em;
+            border-radius: 50px;
+            font-size: 1.25em;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 204, 102, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .contact-button:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .contact-button:hover {
-            background: #00b359;
-            transform: translateY(-2px);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(0, 204, 102, 0.5);
+        }
+
+        .contact-button span {
+            position: relative;
+            z-index: 1;
         }
 
         .contact-button.secondary {
             background: transparent;
-            border: 2px solid #00cc66;
+            border: 3px solid #00cc66;
+            box-shadow: 0 5px 20px rgba(0, 204, 102, 0.2);
         }
 
         .contact-button.secondary:hover {
-            background: #00cc66;
+            background: linear-gradient(135deg, #00cc66 0%, #00ff88 100%);
+            border-color: transparent;
+        }
+
+        .contact-info-footer {
+            margin-top: 60px;
+            font-size: 1.2em;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info-footer .separator {
+            color: #00cc66;
+            font-weight: 700;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .hero h1 {
-                font-size: 2em;
+                font-size: 2.5em;
             }
 
             .hero .subtitle {
-                font-size: 1.2em;
+                font-size: 1.3em;
             }
 
             section h2 {
-                font-size: 2em;
-                flex-direction: column;
+                font-size: 2.2em;
             }
 
             .savings-grid {
                 grid-template-columns: 1fr;
             }
 
+            .accordion-header {
+                padding: 20px 20px;
+            }
+
+            .accordion-title h3 {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px 60px;
+                min-height: 60vh;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero .subtitle {
+                font-size: 1.15em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1em;
+            }
+
+            .intro h2 {
+                font-size: 2em;
+            }
+
+            .intro p {
+                font-size: 1.1em;
+            }
+
+            .savings-categories {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .category-card {
+                padding: 35px 25px;
+            }
+
+            .category-icon {
+                font-size: 3.5em;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            section h2 {
+                font-size: 1.8em;
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            section > p {
+                font-size: 1.1em;
+            }
+
+            .accordion-item {
+                margin-bottom: 15px;
+            }
+
+            .accordion-header {
+                padding: 18px 15px;
+            }
+
+            .accordion-title {
+                gap: 10px;
+            }
+
+            .item-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1em;
+            }
+
+            .accordion-title h3 {
+                font-size: 1em;
+            }
+
+            .accordion-toggle {
+                font-size: 1.2em;
+            }
+
+            .accordion-content {
+                padding: 0 15px;
+            }
+
+            .accordion-item.active .accordion-content {
+                padding: 0 15px 20px;
+            }
+
+            .accordion-content p {
+                font-size: 1em;
+            }
+
+            .summary {
+                padding: 70px 20px;
+            }
+
+            .summary h2 {
+                font-size: 2em;
+            }
+
+            .summary > p {
+                font-size: 1.2em;
+            }
+
+            .summary-stats {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .stat-box {
+                padding: 30px 20px;
+            }
+
+            .stat-box .stat-number {
+                font-size: 2.5em;
+            }
+
+            .stat-box .stat-label {
+                font-size: 1em;
+            }
+
+            .contact-cta {
+                padding: 70px 20px;
+            }
+
+            .contact-cta h2 {
+                font-size: 2em;
+            }
+
+            .contact-cta > p {
+                font-size: 1.15em;
+            }
+
             .contact-buttons {
                 flex-direction: column;
+                gap: 15px;
+            }
+
+            .contact-button {
+                padding: 16px 30px;
+                font-size: 1.1em;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .contact-info-footer {
+                flex-direction: column;
+                gap: 10px;
+                font-size: 1em;
+            }
+
+            .contact-info-footer .separator {
+                display: none;
+            }
+
+            .floating-icon {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.6em;
+            }
+
+            .category-card h3 {
+                font-size: 1.4em;
+            }
+
+            .section-electricity,
+            .section-technician,
+            .section-maintenance {
+                padding: 50px 15px;
             }
         }
 
@@ -403,10 +977,17 @@
     </style>
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
+        <div class="floating-icon icon-1">⚡</div>
+        <div class="floating-icon icon-2">💰</div>
+        <div class="floating-icon icon-3">🔧</div>
+        <div class="floating-icon icon-4">🧰</div>
+        
+        <div class="hero-content">
             <h1>איך Coolz חוסכת לכם כסף?</h1>
             <p class="subtitle">מערכת ניטור קירור חכמה שחוסכת בחשמל, בטכנאים ובבלאי</p>
             <p>מערכת Coolz עובדת בשבילכם 24/7 - מזהה בזבוז, מייעלת צריכה, מונעת תקלות ומאריכה את חיי הציוד</p>
@@ -448,40 +1029,96 @@
             <h2><span class="section-icon">⚡</span> חיסכון בחשמל</h2>
             <p>מערכת הקירור החכמה של Coolz יודעת לעבוד בשבילך — באופן מדויק, מתוזמן וחסכוני. כך היא שומרת על טמפרטורה יציבה ומפחיתה משמעותית את צריכת החשמל:</p>
             
-            <div class="savings-grid">
-                <div class="savings-item">
-                    <h3><span class="item-number">1</span> פעולות מתוזמנות וחכמות</h3>
-                    <p>ניתן לקבוע מראש שעות פעילות ויעדי טמפרטורה משתנים לאורך היום – המערכת תפעל רק כשצריך, ותכבה אוטומטית בשעות שאינן פעילות.</p>
+            <div class="savings-accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">1</span>
+                            <h3>פעולות מתוזמנות וחכמות</h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>ניתן לקבוע מראש שעות פעילות ויעדי טמפרטורה משתנים לאורך היום – המערכת תפעל רק כשצריך, ותכבה אוטומטית בשעות שאינן פעילות.</p>
+                    </div>
                 </div>
 
-                <div class="savings-item">
-                    <h3><span class="item-number">2</span> שליטה אוטומטית בקירור ובתאורה</h3>
-                    <p>קבע זמני הדלקה וכיבוי למערכת הקירור ולתאורה באופן אוטומטי, כך שתצרוך אנרגיה רק בזמנים הנכונים.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">2</span>
+                            <h3>שליטה אוטומטית בקירור ובתאורה</h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>קבע זמני הדלקה וכיבוי למערכת הקירור ולתאורה באופן אוטומטי, כך שתצרוך אנרגיה רק בזמנים הנכונים.</p>
+                    </div>
                 </div>
 
-                <div class="savings-item">
-                    <h3><span class="item-number">3</span> תחזוקה מונעת לניקוי רדיאטור</h3>
-                    <p>באמצעות "ספר התחזוקה" ניתן להגדיר התראה לניקוי רדיאטור חיצוני – פעולה פשוטה שמונעת מאמץ מיותר של המדחס וחוסכת אנרגיה.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">3</span>
+                            <h3>תחזוקה מונעת לניקוי רדיאטור</h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>באמצעות "ספר התחזוקה" ניתן להגדיר התראה לניקוי רדיאטור חיצוני – פעולה פשוטה שמונעת מאמץ מיותר של המדחס וחוסכת אנרגיה.</p>
+                    </div>
                 </div>
 
-                <div class="savings-item alert">
-                    <h3><span class="item-number">4</span> גילוי מוקדם של תקלות</h3>
-                    <p><span class="alert-badge">התראה מוקדמת</span> המערכת מזהה סטיות קלות בטמפרטורה עוד לפני שהן הופכות לתקלה משמעותית, ובכך מונעת מאמץ יתר וצריכת חשמל מיותרת.</p>
+                <div class="accordion-item alert">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">4</span>
+                            <h3>גילוי מוקדם של תקלות <span class="alert-badge">התראה מוקדמת</span></h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>המערכת מזהה סטיות קלות בטמפרטורה עוד לפני שהן הופכות לתקלה משמעותית, ובכך מונעת מאמץ יתר וצריכת חשמל מיותרת.</p>
+                    </div>
                 </div>
 
-                <div class="savings-item">
-                    <h3><span class="item-number">5</span> ניתוח צריכת אנרגיה חכמה</h3>
-                    <p>גרף "עוגת הצריכה" חושף שימושים לא יעילים – מרדיאטור סתום ועד חוסר גז – כדי שתוכל לטפל בבעיה לפני שהיא עולה כסף.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">5</span>
+                            <h3>ניתוח צריכת אנרגיה חכמה</h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>גרף "עוגת הצריכה" חושף שימושים לא יעילים – מרדיאטור סתום ועד חוסר גז – כדי שתוכל לטפל בבעיה לפני שהיא עולה כסף.</p>
+                    </div>
                 </div>
 
-                <div class="savings-item alert">
-                    <h3><span class="item-number">6</span> התראת דלת פתוחה</h3>
-                    <p><span class="alert-badge">חריגה</span> פתיחת דלת המקרר או המקפיא גורמת לירידת טמפרטורה קיצונית. ההתראה בזמן מאפשרת סגירה מהירה וחיסכון מיידי באנרגיה.</p>
+                <div class="accordion-item alert">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">6</span>
+                            <h3>התראת דלת פתוחה <span class="alert-badge">חריגה</span></h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>פתיחת דלת המקרר או המקפיא גורמת לירידת טמפרטורה קיצונית. ההתראה בזמן מאפשרת סגירה מהירה וחיסכון מיידי באנרגיה.</p>
+                    </div>
                 </div>
 
-                <div class="savings-item alert">
-                    <h3><span class="item-number">7</span> התראה על מאייד קפוא</h3>
-                    <p><span class="alert-badge">חריגה</span> המערכת מזהה כשהמאייד קופא ומפסיק להזרים אוויר קר – ומתריעה בזמן כדי למנוע צריכת חשמל מיותרת.</p>
+                <div class="accordion-item alert">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">7</span>
+                            <h3>התראה על מאייד קפוא <span class="alert-badge">חריגה</span></h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>המערכת מזהה כשהמאייד קופא ומפסיק להזרים אוויר קר – ומתריעה בזמן כדי למנוע צריכת חשמל מיותרת.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -493,20 +1130,44 @@
             <h2><span class="section-icon">🧰</span> חיסכון בעלויות טכנאי</h2>
             <p>בנוסף לחיסכון בחשמל, מערכת Coolz חוסכת לך גם בעלויות שירות ותחזוקה:</p>
             
-            <div class="savings-grid">
-                <div class="savings-item">
-                    <h3><span class="item-number">1</span> שליטה מרחוק בפרמטרים</h3>
-                    <p>ניתן לשנות הגדרות ופרמטרים בכל מערכת קירור – מכל מקום ובכל זמן – ללא צורך בהגעת טכנאי.</p>
+            <div class="savings-accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">1</span>
+                            <h3>שליטה מרחוק בפרמטרים</h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>ניתן לשנות הגדרות ופרמטרים בכל מערכת קירור – מכל מקום ובכל זמן – ללא צורך בהגעת טכנאי.</p>
+                    </div>
                 </div>
 
-                <div class="savings-item alert">
-                    <h3><span class="item-number">2</span> איתור תקלות בזמן אמת</h3>
-                    <p><span class="alert-badge">גילוי עצמאי</span> אם מתרחשת קפיצת הגנת מדחס כתוצאה מתקלה לא קריטית, המערכת מתריעה מיד ומציגה את מקור הבעיה – כך שהלקוח יכול לטפל בעצמו ולחסוך ביקור טכנאי.</p>
+                <div class="accordion-item alert">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">2</span>
+                            <h3>איתור תקלות בזמן אמת <span class="alert-badge">גילוי עצמאי</span></h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>אם מתרחשת קפיצת הגנת מדחס כתוצאה מתקלה לא קריטית, המערכת מתריעה מיד ומציגה את מקור הבעיה – כך שהלקוח יכול לטפל בעצמו ולחסוך ביקור טכנאי.</p>
+                    </div>
                 </div>
 
-                <div class="savings-item">
-                    <h3><span class="item-number">3</span> ספר טיפולים דיגיטלי</h3>
-                    <p>כל טיפול, החלפת חלק ועלות נרשמים אוטומטית, כולל נתוני אחריות ופרטי מבצע. כך נמנעות כפילויות ותשלומים מיותרים במסגרת אחריות קיימת.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">3</span>
+                            <h3>ספר טיפולים דיגיטלי</h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>כל טיפול, החלפת חלק ועלות נרשמים אוטומטית, כולל נתוני אחריות ופרטי מבצע. כך נמנעות כפילויות ותשלומים מיותרים במסגרת אחריות קיימת.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -518,25 +1179,57 @@
             <h2><span class="section-icon">🔧</span> חיסכון בבלאי ושחיקה של מערכת הקירור</h2>
             <p>תחזוקה חכמה מאריכה את חיי המערכת ומפחיתה את הצורך בתיקונים עתידיים:</p>
             
-            <div class="savings-grid">
-                <div class="savings-item">
-                    <h3><span class="item-number">1</span> שליטה בשעות ובימי הפעילות</h3>
-                    <p>באמצעות פעולות מתוזמנות ניתן להגדיר שעות, ימים ויעדי טמפרטורה מדויקים, ובכך לקצר את זמני הפעולה של המערכת ולמנוע שחיקה מיותרת.</p>
+            <div class="savings-accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">1</span>
+                            <h3>שליטה בשעות ובימי הפעילות</h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>באמצעות פעולות מתוזמנות ניתן להגדיר שעות, ימים ויעדי טמפרטורה מדויקים, ובכך לקצר את זמני הפעולה של המערכת ולמנוע שחיקה מיותרת.</p>
+                    </div>
                 </div>
 
-                <div class="savings-item alert">
-                    <h3><span class="item-number">2</span> מניעת מאמץ יתר של המדחס</h3>
-                    <p><span class="alert-badge">זיהוי חריגות</span> המערכת מזהה חריגות מזעריות ומתריעה בזמן אמת – לפני שמתחיל עומס מיותר על מערכת הקירור.</p>
+                <div class="accordion-item alert">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">2</span>
+                            <h3>מניעת מאמץ יתר של המדחס <span class="alert-badge">זיהוי חריגות</span></h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>המערכת מזהה חריגות מזעריות ומתריעה בזמן אמת – לפני שמתחיל עומס מיותר על מערכת הקירור.</p>
+                    </div>
                 </div>
 
-                <div class="savings-item">
-                    <h3><span class="item-number">3</span> התראות תחזוקה חכמות</h3>
-                    <p>פונקציית ספר הטיפולים מאפשרת קביעת התראות לשטיפה וניקוי רדיאטור, שמונעות בלאי ותחזוקה לא מתוזמנת.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">3</span>
+                            <h3>התראות תחזוקה חכמות</h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>פונקציית ספר הטיפולים מאפשרת קביעת התראות לשטיפה וניקוי רדיאטור, שמונעות בלאי ותחזוקה לא מתוזמנת.</p>
+                    </div>
                 </div>
 
-                <div class="savings-item alert">
-                    <h3><span class="item-number">4</span> מניעת עומס עקב דלת פתוחה</h3>
-                    <p><span class="alert-badge">חריגה</span> המערכת מתריעה בזמן על דלת פתוחה ומונעת הפעלה מיותרת של המדחס להחזרת הטמפרטורה הרצויה – מה שמפחית שחיקה וחוסך חשמל.</p>
+                <div class="accordion-item alert">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title">
+                            <span class="item-number">4</span>
+                            <h3>מניעת עומס עקב דלת פתוחה <span class="alert-badge">חריגה</span></h3>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>המערכת מתריעה בזמן על דלת פתוחה ומונעת הפעלה מיותרת של המדחס להחזרת הטמפרטורה הרצויה – מה שמפחית שחיקה וחוסך חשמל.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -544,87 +1237,290 @@
 
     <!-- Summary Section -->
     <section class="summary">
-        <div class="container">
-            <h2>החיסכון שלכם מתחיל עכשיו</h2>
-            <p>מערכת Coolz היא ההשקעה החכמה שמשתלמת לבד</p>
-            
-            <div class="summary-stats">
-                <div class="stat-box">
-                    <div class="stat-number">25-40%</div>
-                    <div class="stat-label">חיסכון בחשמל<br>בממוצע</div>
+        <div class="summary-content">
+            <div class="container">
+                <h2>החיסכון שלכם מתחיל עכשיו</h2>
+                <p>מערכת Coolz היא ההשקעה החכמה שמשתלמת לבד</p>
+                
+                <div class="summary-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">25-40%</div>
+                        <div class="stat-label">חיסכון בחשמל<br>בממוצע</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-number">70%</div>
+                        <div class="stat-label">הפחתה בביקורי<br>טכנאים מיותרים</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-number">3-6</div>
+                        <div class="stat-label">החזר השקעה<br>בחודשים</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-number">+5 שנים</div>
+                        <div class="stat-label">הארכת חיי<br>הציוד בממוצע</div>
+                    </div>
                 </div>
 
-                <div class="stat-box">
-                    <div class="stat-number">70%</div>
-                    <div class="stat-label">הפחתה בביקורי<br>טכנאים מיותרים</div>
-                </div>
-
-                <div class="stat-box">
-                    <div class="stat-number">3-6</div>
-                    <div class="stat-label">החזר השקעה<br>בחודשים</div>
-                </div>
-
-                <div class="stat-box">
-                    <div class="stat-number">+5 שנים</div>
-                    <div class="stat-label">הארכת חיי<br>הציוד בממוצע</div>
-                </div>
+                <p class="final-message">לקוחות Coolz מדווחים על חיסכון ממוצע של אלפי שקלים בשנה</p>
             </div>
-
-            <p style="font-size: 1.2em; margin-top: 30px;">לקוחות Coolz מדווחים על חיסכון ממוצע של אלפי שקלים בשנה</p>
         </div>
     </section>
 
     <!-- Contact CTA Section -->
     <section class="contact-cta" id="contact">
-        <div class="container">
-            <h2>מוכנים להתחיל לחסוך?</h2>
-            <p>הצוות שלנו ייעץ לכם איך Coolz יכולה לחסוך לכם כסף ולשפר את התפעול</p>
-            
-            <div class="contact-buttons">
-                <a href="tel:076-599770" class="contact-button">
-                    📞 התקשרו עכשיו: 076-599770
-                </a>
-                <a href="mailto:info@coolz.co.il" class="contact-button secondary">
-                    📧 info@coolz.co.il
-                </a>
-            </div>
+        <div class="contact-cta-content">
+            <div class="container">
+                <h2>מוכנים להתחיל לחסוך?</h2>
+                <p>הצוות שלנו ייעץ לכם איך Coolz יכולה לחסוך לכם כסף ולשפר את התפעול</p>
+                
+                <div class="contact-buttons">
+                    <a href="tel:076-599770" class="contact-button">
+                        <span>📞 התקשרו עכשיו: 076-599770</span>
+                    </a>
+                    <a href="mailto:info@coolz.co.il" class="contact-button secondary">
+                        <span>📧 info@coolz.co.il</span>
+                    </a>
+                </div>
 
-            <p style="margin-top: 40px; font-size: 1.1em; opacity: 0.8;">
-                📍 אלי כהן 24, אשקלון | זמינים לשירותכם 24/7
-            </p>
+                <div class="contact-info-footer">
+                    <span>📍 אלי כהן 24, אשקלון</span>
+                    <span class="separator">|</span>
+                    <span>זמינים לשירותכם 24/7</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <script>
+        // Accordion functionality
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const wasActive = item.classList.contains('active');
+            
+            // Close all accordions in the same section
+            const section = header.closest('section');
+            const allItems = section.querySelectorAll('.accordion-item');
+            allItems.forEach(i => i.classList.remove('active'));
+            
+            // Open clicked accordion if it wasn't active
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    target.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
 
-        // Intersection Observer for animations
+        // Intersection Observer for scroll animations
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(30px)';
+                    
+                    setTimeout(() => {
+                        entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        // Observe all savings items
-        document.querySelectorAll('.savings-item, .category-card').forEach(item => {
-            observer.observe(item);
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe category cards
+            document.querySelectorAll('.category-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => observer.observe(card), index * 100);
+            });
+
+            // Observe accordion items
+            document.querySelectorAll('.accordion-item').forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                setTimeout(() => observer.observe(item), index * 50);
+            });
+
+            // Observe stat boxes
+            document.querySelectorAll('.stat-box').forEach((box, index) => {
+                box.style.opacity = '0';
+                box.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    const statObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                                entry.target.style.opacity = '1';
+                                entry.target.style.transform = 'scale(1)';
+                                
+                                // Animate numbers
+                                const numberElement = entry.target.querySelector('.stat-number');
+                                if (numberElement) {
+                                    animateNumber(numberElement);
+                                }
+                                
+                                statObserver.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.3 });
+                    
+                    statObserver.observe(box);
+                }, index * 150);
+            });
         });
+
+        // Animate numbers in stat boxes
+        function animateNumber(element) {
+            const text = element.textContent;
+            const hasPercent = text.includes('%');
+            const hasPlus = text.includes('+');
+            const hasMinus = text.includes('-');
+            const hasRange = text.includes('-') && !hasPlus;
+            
+            if (hasRange) {
+                // Handle ranges like "25-40%"
+                const matches = text.match(/(\d+)-(\d+)/);
+                if (matches) {
+                    const start = parseInt(matches[1]);
+                    const end = parseInt(matches[2]);
+                    let current = 0;
+                    const increment = Math.ceil(end / 30);
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= end) {
+                            current = end;
+                            clearInterval(timer);
+                        }
+                        element.textContent = `${start}-${current}${hasPercent ? '%' : ''}`;
+                    }, 30);
+                }
+            } else {
+                // Handle single numbers
+                const number = parseInt(text.replace(/\D/g, ''));
+                if (isNaN(number)) return;
+                
+                let current = 0;
+                const increment = Math.ceil(number / 30);
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= number) {
+                        current = number;
+                        clearInterval(timer);
+                    }
+                    let displayText = current.toString();
+                    if (hasPlus) displayText = '+' + displayText;
+                    if (hasPercent) displayText += '%';
+                    if (text.includes('שנים')) displayText += ' שנים';
+                    element.textContent = displayText;
+                }, 30);
+            }
+        }
+
+        // Add hover effect to contact buttons
+        document.querySelectorAll('.contact-button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add click ripple effect
+        document.querySelectorAll('.category-card, .accordion-header').forEach(element => {
+            element.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(0, 204, 102, 0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                ripple.style.pointerEvents = 'none';
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Performance optimization: Lazy load images if any
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img.lazy').forEach(img => imageObserver.observe(img));
+        }
     </script>
 
 </body>
