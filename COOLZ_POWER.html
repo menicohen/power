@@ -361,6 +361,162 @@
             line-height: 1.7;
         }
 
+        /* Feature Cards (for hybrid layout) */
+        .feature-card {
+            background: var(--color-bg);
+            border: 1px solid #e5e7eb;
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(0, 204, 102, 0.08), transparent);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover::before {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 204, 102, 0.12), transparent);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-primary);
+        }
+
+        .feature-card-alert {
+            border-right: 4px solid var(--color-alert);
+        }
+
+        .feature-card-alert::before {
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.08), transparent);
+        }
+
+        .feature-card-alert:hover::before {
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.12), transparent);
+        }
+
+        .feature-card-alert:hover {
+            border-color: var(--color-alert);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 204, 102, 0.25);
+            z-index: 1;
+        }
+
+        .alert-number {
+            background: linear-gradient(135deg, var(--color-alert), var(--color-alert-light));
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.25);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-top: 1.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .feature-card h3 {
+            color: var(--color-text);
+            font-size: 1.375rem;
+            font-weight: 700;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            color: var(--color-text-light);
+            line-height: 1.7;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-highlight {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(0, 204, 102, 0.08), rgba(0, 204, 102, 0.03));
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(0, 204, 102, 0.2);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-primary-dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .alert-highlight {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 107, 107, 0.03));
+            border-color: rgba(255, 107, 107, 0.2);
+            color: #c92a2a;
+        }
+
+        .highlight-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 50%;
+            background: var(--color-primary);
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .alert-highlight .highlight-icon {
+            background: var(--color-alert);
+        }
+
+        .feature-card-large {
+            padding: 3rem 2.5rem;
+        }
+
+        .feature-card-large h3 {
+            font-size: 1.5rem;
+        }
+
+        .feature-card-large p {
+            font-size: 1.0625rem;
+        }
+
         /* Accordion Section */
         .savings-section {
             background: var(--color-bg-dark);
@@ -821,46 +977,32 @@
                 </p>
             </div>
 
+            <!-- First 3 items as Cards -->
+            <div class="category-grid" style="margin-bottom: 3rem;">
+                <div class="feature-card">
+                    <div class="feature-number">1</div>
+                    <div class="feature-icon">⏰</div>
+                    <h3>פעולות מתוזמנות וחכמות</h3>
+                    <p>קביעת שעות פעילות ויעדי טמפרטורה משתנים לאורך היום – המערכת תפעל רק כשצריך, ותכבה אוטומטית בשעות שאינן פעילות.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-number">2</div>
+                    <div class="feature-icon">💡</div>
+                    <h3>שליטה אוטומטית בקירור ובתאורה</h3>
+                    <p>הגדרת זמני הדלקה וכיבוי למערכת הקירור ולתאורה באופן אוטומטי, כך שתצרוך אנרגיה רק בזמנים הנכונים.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-number">3</div>
+                    <div class="feature-icon">🧹</div>
+                    <h3>תחזוקה מונעת לניקוי רדיאטור</h3>
+                    <p>ספר התחזוקה מאפשר הגדרת התראות לניקוי רדיאטור חיצוני – פעולה פשוטה שמונעת מאמץ מיותר של המדחס וחוסכת אנרגיה.</p>
+                </div>
+            </div>
+
+            <!-- Rest as Accordion -->
             <div class="accordion-container">
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="accordion-number">1</div>
-                        <div class="accordion-title-wrapper">
-                            <h3 class="accordion-title">פעולות מתוזמנות וחכמות</h3>
-                        </div>
-                        <div class="accordion-toggle">▼</div>
-                    </div>
-                    <div class="accordion-content">
-                        <p>קביעת שעות פעילות ויעדי טמפרטורה משתנים לאורך היום – המערכת תפעל רק כשצריך, ותכבה אוטומטית בשעות שאינן פעילות.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="accordion-number">2</div>
-                        <div class="accordion-title-wrapper">
-                            <h3 class="accordion-title">שליטה אוטומטית בקירור ובתאורה</h3>
-                        </div>
-                        <div class="accordion-toggle">▼</div>
-                    </div>
-                    <div class="accordion-content">
-                        <p>הגדרת זמני הדלקה וכיבוי למערכת הקירור ולתאורה באופן אוטומטי, כך שתצרוך אנרגיה רק בזמנים הנכונים.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="accordion-number">3</div>
-                        <div class="accordion-title-wrapper">
-                            <h3 class="accordion-title">תחזוקה מונעת לניקוי רדיאטור</h3>
-                        </div>
-                        <div class="accordion-toggle">▼</div>
-                    </div>
-                    <div class="accordion-content">
-                        <p>ספר התחזוקה מאפשר הגדרת התראות לניקוי רדיאטור חיצוני – פעולה פשוטה שמונעת מאמץ מיותר של המדחס וחוסכת אנרגיה.</p>
-                    </div>
-                </div>
-
                 <div class="accordion-item alert">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div class="accordion-number">4</div>
@@ -936,36 +1078,36 @@
                 </p>
             </div>
 
+            <!-- First 2 items as Large Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div class="feature-card feature-card-large">
+                    <div class="feature-number">1</div>
+                    <div class="feature-icon">🎮</div>
+                    <h3>שליטה מרחוק בפרמטרים</h3>
+                    <p>שינוי הגדרות ופרמטרים בכל מערכת קירור – מכל מקום ובכל זמן – ללא צורך בהגעת טכנאי.</p>
+                    <div class="feature-highlight">
+                        <span class="highlight-icon">✓</span>
+                        <span>חיסכון ממוצע של 3-5 ביקורי טכנאי בשנה</span>
+                    </div>
+                </div>
+
+                <div class="feature-card feature-card-large feature-card-alert">
+                    <div class="feature-number alert-number">2</div>
+                    <div class="feature-icon">🔍</div>
+                    <h3>
+                        <span class="alert-badge">עצמאי</span>
+                        איתור תקלות בזמן אמת
+                    </h3>
+                    <p>התראה מיידית עם הצגת מקור הבעיה בקפיצת הגנת מדחס – טיפול עצמאי וחיסכון בביקור טכנאי.</p>
+                    <div class="feature-highlight alert-highlight">
+                        <span class="highlight-icon">⚠</span>
+                        <span>זיהוי מיידי של בעיות פשוטות לפתרון עצמאי</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Last item as Accordion -->
             <div class="accordion-container">
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="accordion-number">1</div>
-                        <div class="accordion-title-wrapper">
-                            <h3 class="accordion-title">שליטה מרחוק בפרמטרים</h3>
-                        </div>
-                        <div class="accordion-toggle">▼</div>
-                    </div>
-                    <div class="accordion-content">
-                        <p>שינוי הגדרות ופרמטרים בכל מערכת קירור – מכל מקום ובכל זמן – ללא צורך בהגעת טכנאי.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item alert">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="accordion-number">2</div>
-                        <div class="accordion-title-wrapper">
-                            <h3 class="accordion-title">
-                                <span class="alert-badge">עצמאי</span>
-                                איתור תקלות בזמן אמת
-                            </h3>
-                        </div>
-                        <div class="accordion-toggle">▼</div>
-                    </div>
-                    <div class="accordion-content">
-                        <p>התראה מיידית עם הצגת מקור הבעיה בקפיצת הגנת מדחס – טיפול עצמאי וחיסכון בביקור טכנאי.</p>
-                    </div>
-                </div>
-
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div class="accordion-number">3</div>
@@ -993,36 +1135,28 @@
                 </p>
             </div>
 
+            <!-- First 2 items as Cards -->
+            <div class="category-grid" style="margin-bottom: 3rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
+                <div class="feature-card">
+                    <div class="feature-number">1</div>
+                    <div class="feature-icon">📅</div>
+                    <h3>שליטה בשעות ובימי הפעילות</h3>
+                    <p>הגדרת שעות, ימים ויעדי טמפרטורה מדויקים לקיצור זמני הפעולה ומניעת שחיקה מיותרת.</p>
+                </div>
+
+                <div class="feature-card feature-card-alert">
+                    <div class="feature-number alert-number">2</div>
+                    <div class="feature-icon">⚙️</div>
+                    <h3>
+                        <span class="alert-badge">זיהוי</span>
+                        מניעת מאמץ יתר של המדחס
+                    </h3>
+                    <p>זיהוי חריגות מזעריות והתראה בזמן אמת – לפני שמתחיל עומס מיותר על מערכת הקירור.</p>
+                </div>
+            </div>
+
+            <!-- Rest as Accordion -->
             <div class="accordion-container">
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="accordion-number">1</div>
-                        <div class="accordion-title-wrapper">
-                            <h3 class="accordion-title">שליטה בשעות ובימי הפעילות</h3>
-                        </div>
-                        <div class="accordion-toggle">▼</div>
-                    </div>
-                    <div class="accordion-content">
-                        <p>הגדרת שעות, ימים ויעדי טמפרטורה מדויקים לקיצור זמני הפעולה ומניעת שחיקה מיותרת.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item alert">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <div class="accordion-number">2</div>
-                        <div class="accordion-title-wrapper">
-                            <h3 class="accordion-title">
-                                <span class="alert-badge">זיהוי</span>
-                                מניעת מאמץ יתר של המדחס
-                            </h3>
-                        </div>
-                        <div class="accordion-toggle">▼</div>
-                    </div>
-                    <div class="accordion-content">
-                        <p>זיהוי חריגות מזעריות והתראה בזמן אמת – לפני שמתחיל עומס מיותר על מערכת הקירור.</p>
-                    </div>
-                </div>
-
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div class="accordion-number">3</div>
@@ -1051,41 +1185,6 @@
                         <p>התראה בזמן על דלת פתוחה למניעת הפעלה מיותרת של המדחס – הפחתת שחיקה וחיסכון בחשמל.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Summary Section -->
-    <section class="summary-section">
-        <div class="container">
-            <div class="summary-content">
-                <div class="section-header">
-                    <h2 class="section-title">החיסכון שלכם מתחיל עכשיו</h2>
-                    <p class="section-description">ההשקעה החכמה שמשתלמת לבד</p>
-                </div>
-
-                <div class="summary-grid">
-                    <div class="summary-stat">
-                        <span class="summary-stat-number">25-40%</span>
-                        <span class="summary-stat-label">חיסכון בחשמל<br>בממוצע</span>
-                    </div>
-                    <div class="summary-stat">
-                        <span class="summary-stat-number">70%</span>
-                        <span class="summary-stat-label">הפחתה בביקורי<br>טכנאים מיותרים</span>
-                    </div>
-                    <div class="summary-stat">
-                        <span class="summary-stat-number">3-6</span>
-                        <span class="summary-stat-label">החזר השקעה<br>בחודשים</span>
-                    </div>
-                    <div class="summary-stat">
-                        <span class="summary-stat-number">+5</span>
-                        <span class="summary-stat-label">שנים נוספות<br>לחיי הציוד</span>
-                    </div>
-                </div>
-
-                <p class="section-description" style="margin-top: 3rem; font-size: 1.125rem;">
-                    לקוחות Coolz מדווחים על חיסכון ממוצע של אלפי שקלים בשנה
-                </p>
             </div>
         </div>
     </section>
@@ -1172,7 +1271,7 @@
 
         // Observe elements
         document.addEventListener('DOMContentLoaded', () => {
-            const elements = document.querySelectorAll('.category-card, .accordion-item, .summary-stat');
+            const elements = document.querySelectorAll('.category-card, .accordion-item, .feature-card');
             elements.forEach((el, index) => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(30px)';
